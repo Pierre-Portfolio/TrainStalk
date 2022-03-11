@@ -1,0 +1,3 @@
+Options -Indexes
+ErrorDocument 403 /app/
+ErrorDocument 404 /app/
