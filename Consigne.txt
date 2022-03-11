@@ -1,0 +1,17 @@
+Créer une ontology
+Créer les individu
+Créer des Triples store Use Jena Fuseki ? ( bonus )
+Recup en Json , convertir en Json-ld, on va créer les triplet et on les stock dans le triple store
+On créer les requete SparQL ( 3 - 4 ) requete PARLANTE et depend de nos objectif de notre application
+Créer les RULES car les onthology ny reponde pas
+CRéer une application web 
+
+
+Bonus :
+2 sources minimun mais go plus de source ( pas les meme schéma )
+AVOIR DES CONTEXTE DIFFERENT QUI PEUVENT ETRE CORRELLE
+AVOIR DES DONNEE EN TEMP REEL => TRES TRES BIEN ( la convertion de donnée , step starting au json )
+Créer une onthology Complexe ( plusieur classe & sous class comme dans les pizza pas plus )
+Proposer le real time en option
+Une carte de France ?
+Dockerisé l'application
