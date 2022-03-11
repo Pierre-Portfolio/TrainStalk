@@ -15,3 +15,14 @@ Créer une onthology Complexe ( plusieur classe & sous class comme dans les pizz
 Proposer le real time en option
 Une carte de France ?
 Dockerisé l'application
+
+Api
+https://ressources.data.sncf.com/explore/dataset/sncf-ter-gtfs/table/
+https://www.digital.sncf.com/startup/api
+https://ressources.data.sncf.com/explore/?sort=modified&refine.theme=Gares
+https://openweathermap.org/api
+https://aqicn.org/api/fr/
+http://linkedgeodata.org/
+https://adresse.data.gouv.fr/api-doc/adresse
+http://rdf.insee.fr/geo/index.html
+https://ressources.data.sncf.com/explore/dataset/sncf-ter-gtfs/export/
