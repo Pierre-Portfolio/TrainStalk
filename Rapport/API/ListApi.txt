@@ -8,3 +8,14 @@ http://linkedgeodata.org/
 https://adresse.data.gouv.fr/api-doc/adresse
 http://rdf.insee.fr/geo/index.html
 https://ressources.data.sncf.com/explore/dataset/sncf-ter-gtfs/export/
+
+
+Trajets en train :
+
+https://6430b7e5-f72b-46a3-85f2-6920e725b010@api.sncf.com/v1/coverage/sncf/vehicle_journeys
+
+exemple :
+https://6430b7e5-f72b-46a3-85f2-6920e725b010@api.sncf.com/v1/coverage/sncf/vehicle_journeys/vehicle_journey:SNCF:2022-03-16:9550:1187:LongDistanceTrain
+
+disruptions : liste des problèmes
+vehicle_journeys : liste des trajets
