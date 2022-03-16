@@ -98,6 +98,7 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#GareArrive">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Arrive"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#GareDepart"/>
     </owl:Class>
     
 
@@ -114,6 +115,7 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#HallArrive">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Arrive"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#HallDepart"/>
     </owl:Class>
     
 
@@ -130,6 +132,7 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#HeureArrive">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Arrive"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#HeureDepart"/>
     </owl:Class>
     
 
