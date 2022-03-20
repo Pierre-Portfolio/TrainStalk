@@ -1,0 +1,38 @@
+{
+  "@context": {
+    "@vocab": "http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7",
+    "@base": "http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7",
+    "owl":"http://www.w3.org/2002/07/owl#",
+    "rdf":"http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "xml":"http://www.w3.org/XML/1998/namespace",
+    "xsd":"http://www.w3.org/2001/XMLSchema#",
+    "rdfs":"http://www.w3.org/2000/01/rdf-schema#",
+    
+    "request_state": null,
+    "request_key": null,
+    "message": null,
+    "model_run": null,
+    "source": null,
+    "temperature_2m": null,
+    "sol": "Temperature",
+    "500hPa": null,
+    "850hPa": null,
+    "niveau_de_la_mer": null,
+    "pluie": "Rain",
+    "pluie_convective": null,
+    "humidite_2m": null,
+    "vent_moyen_10m": "Wind",
+    "vent_rafales_10m": null,
+    "vent_direction_10m": null,
+    "iso_zero": null,
+    "risque_neige": "Snow",
+    "cape": null,
+    "haute": null,
+    "moyenne": null,
+    "basse": null,
+    "totale": null
+   },
+   "@type": "ItemList",
+   "itemListElement":
+  []
+}

@@ -8,8 +8,8 @@
     "xsd":"http://www.w3.org/2001/XMLSchema#",
     "rdfs":"http://www.w3.org/2000/01/rdf-schema#",
     
-    "datasetid": null,
-    "recordid": null,
+    "datasetid": "@type",
+    "recordid": "@id",
     "idreseau": null,
     "y_l93": null,
     "commune": "Ville",
