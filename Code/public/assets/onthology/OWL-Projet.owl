@@ -72,6 +72,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Date -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Date">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Meteo"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Depart -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Depart">
@@ -84,14 +92,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Departement">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Gare"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Ensoleillement -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Ensoleillement">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Meteo"/>
     </owl:Class>
     
 
@@ -153,6 +153,22 @@
     
 
 
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Humidity -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Humidity">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Meteo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#IDGare -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#IDGare">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Gare"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#IDTrajet -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#IDTrajet">
@@ -183,10 +199,26 @@
     
 
 
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Nebulosite -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Nebulosite">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Meteo"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#NomGare -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#NomGare">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Gare"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Rain -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Rain">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Meteo"/>
     </owl:Class>
     
 
@@ -203,6 +235,14 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Size">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Train"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Snow -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Snow">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Meteo"/>
     </owl:Class>
     
 
@@ -265,18 +305,18 @@
     
 
 
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Vent -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Vent">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Meteo"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Ville -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Ville">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Gare"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Wind -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Wind">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Meteo"/>
     </owl:Class>
     
 
