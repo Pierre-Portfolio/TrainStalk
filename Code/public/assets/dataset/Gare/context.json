@@ -9,12 +9,12 @@
     "rdfs":"http://www.w3.org/2000/01/rdf-schema#",
     
     "datasetid": null,
-    "recordid": "IDGare",
+    "recordid": null,
     "idreseau": null,
     "y_l93": null,
     "commune": "Ville",
     "voyageurs": null,
-    "code_uic": null,
+    "code_uic": "IDGare",
     "coordinates_geoshape": null,
     "type_geoshape": null,
     "fret": null,
@@ -32,5 +32,7 @@
     "type_geometry": null,
     "coordinates_geometry": null,
     "record_timestamp": null
-  }
+   },
+   "@type": "ItemList",
+   "itemListElement":
 }
