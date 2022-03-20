@@ -1,0 +1,36 @@
+{
+  "@context": {
+    "@vocab": "http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7",
+    "@base": "http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7",
+    "owl":"http://www.w3.org/2002/07/owl#",
+    "rdf":"http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "xml":"http://www.w3.org/XML/1998/namespace",
+    "xsd":"http://www.w3.org/2001/XMLSchema#",
+    "rdfs":"http://www.w3.org/2000/01/rdf-schema#",
+    
+    "datasetid": null,
+    "recordid": "IDGare",
+    "idreseau": null,
+    "y_l93": null,
+    "commune": "Ville",
+    "voyageurs": null,
+    "code_uic": null,
+    "coordinates_geoshape": null,
+    "type_geoshape": null,
+    "fret": null,
+    "idgaia": null,
+    "libelle": "NomGare",
+    "pk": null,
+    "departemen": "Departement",
+    "rg_troncon": null,
+    "x_wgs84": null,
+    "x_l93": null,
+    "code_ligne": null,
+    "c_geo": null,
+    "geo_point_2d": "Coordinates",
+    "y_wgs_84": null,
+    "type_geometry": null,
+    "coordinates_geometry": null,
+    "record_timestamp": null
+  }
+}
