@@ -23,6 +23,7 @@ const findTrainJourney = module.exports.findTrainJourney = async id => {
         return trains;
     }catch (err) {
         console.log("Can't find the train", err)
+        return {};
     }
 }
 
@@ -37,12 +38,14 @@ const findTrainStation = module.exports.findTrainStation = async (departure, arr
             var res = trains["departures"].filter(dep=>dep["route"]["direction"]["stop_area"]["codes"][1]["value"] === arrival)
             res = res[0]["links"].filter(lk=>lk["type"] === "vehicle_journey");
             res = res[0]["id"];
-            console.log(res);
+            res = res.split(':');
+            return findTrainJourney(res[3]);
         }
         return trains;
     }catch (err) {
         console.log("Can't find the train", err)
+        return {};
     }
 }
 
-findTrainStation("87751008","87753004");
+findTrainStation("87686006","87683268");
