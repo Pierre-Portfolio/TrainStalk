@@ -10,12 +10,20 @@ const findTrainJourney = module.exports.findTrainJourney = async id => {
     let date = today.getFullYear()+'-'+(month<10?'0'+month : month)+'-'+ (day < 10 ? '0'+day : day);
     console.log("Date : ", date)
     try {
-        var response = await fetch(`https://${api_key}@api.sncf.com/v1/coverage/sncf/vehicle_journeys/vehicle_journey:SNCF:${date}:${id}:1187:LongDistanceTrain`)
-        trains = await response.json();
-        console.log("liste_train :",trains)
+        var response = await fetch(`https://${api_key}@api.sncf.com/v1/coverage/sncf/vehicle_journeys/vehicle_journey:SNCF:${date}:${id}:1187:LongDistanceTrain`);
+        var trains = await response.json();
+        if(trains.hasOwnProperty("error")){
+            response = await fetch(`https://${api_key}@api.sncf.com/v1/coverage/sncf/vehicle_journeys/vehicle_journey:SNCF:${date}:${id}:1187:Train`);
+            trains = await response.json();
+        }
+        if(trains.hasOwnProperty("error")){
+            trains = {};
+        }
+        console.log(trains)
+        return trains;
     }catch (err) {
         console.log("Can't find the train", err)
     }
 }
 
-findTrainJourney("9580")
+findTrainJourney("0000")
