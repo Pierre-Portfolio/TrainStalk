@@ -15,10 +15,10 @@ const findTrainJourney = module.exports.findTrainJourney = async id => {
         if(trains.hasOwnProperty("error")){
             response = await fetch(`https://${api_key}@api.sncf.com/v1/coverage/sncf/vehicle_journeys/vehicle_journey:SNCF:${date}:${id}:1187:Train`);
             trains = await response.json();
-        }
-        if(trains.hasOwnProperty("error")){
-            trains = {};
-        }
+            if(trains.hasOwnProperty("error")){
+                trains = {};
+            }
+            }
         console.log(trains)
         return trains;
     }catch (err) {
@@ -26,4 +26,23 @@ const findTrainJourney = module.exports.findTrainJourney = async id => {
     }
 }
 
-findTrainJourney("0000")
+const findTrainStation = module.exports.findTrainStation = async (departure, arrival) => {
+    try {
+        var response = await fetch(`https://${api_key}@api.sncf.com/v1/coverage/sncf/stop_points/stop_point:SNCF:${departure}:Train/departures`);
+        var trains = await response.json();
+        if(trains.hasOwnProperty("error")){
+            trains = {};
+        }
+        else{
+            var res = trains["departures"].filter(dep=>dep["route"]["direction"]["stop_area"]["codes"][1]["value"] === arrival)
+            res = res[0]["links"].filter(lk=>lk["type"] === "vehicle_journey");
+            res = res[0]["id"];
+            console.log(res);
+        }
+        return trains;
+    }catch (err) {
+        console.log("Can't find the train", err)
+    }
+}
+
+findTrainStation("87751008","87753004");
