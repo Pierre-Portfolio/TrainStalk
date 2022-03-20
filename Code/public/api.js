@@ -1,7 +1,8 @@
 const fetch = require('node-fetch');
 const fs = import('fs');
 //const { data } = require('cheerio/lib/api/attributes');
-const api_key = "6430b7e5-f72b-46a3-85f2-6920e725b010"
+const sncf_api_key = "6430b7e5-f72b-46a3-85f2-6920e725b010"
+const sncf_weather_key = "6430b7e5-f72b-46a3-85f2-6920e725b010"
 
 const findTrainJourney = module.exports.findTrainJourney = async id => {
     let today = new Date()
@@ -10,10 +11,10 @@ const findTrainJourney = module.exports.findTrainJourney = async id => {
     let date = today.getFullYear()+'-'+(month<10?'0'+month : month)+'-'+ (day < 10 ? '0'+day : day);
     console.log("Date : ", date)
     try {
-        var response = await fetch(`https://${api_key}@api.sncf.com/v1/coverage/sncf/vehicle_journeys/vehicle_journey:SNCF:${date}:${id}:1187:LongDistanceTrain`);
+        var response = await fetch(`https://${sncf_api_key}@api.sncf.com/v1/coverage/sncf/vehicle_journeys/vehicle_journey:SNCF:${date}:${id}:1187:LongDistanceTrain`);
         var trains = await response.json();
         if(trains.hasOwnProperty("error")){
-            response = await fetch(`https://${api_key}@api.sncf.com/v1/coverage/sncf/vehicle_journeys/vehicle_journey:SNCF:${date}:${id}:1187:Train`);
+            response = await fetch(`https://${sncf_api_key}@api.sncf.com/v1/coverage/sncf/vehicle_journeys/vehicle_journey:SNCF:${date}:${id}:1187:Train`);
             trains = await response.json();
             if(trains.hasOwnProperty("error")){
                 trains = {};
@@ -29,7 +30,7 @@ const findTrainJourney = module.exports.findTrainJourney = async id => {
 
 const findTrainStation = module.exports.findTrainStation = async (departure, arrival) => {
     try {
-        var response = await fetch(`https://${api_key}@api.sncf.com/v1/coverage/sncf/stop_points/stop_point:SNCF:${departure}:Train/departures`);
+        var response = await fetch(`https://${sncf_api_key}@api.sncf.com/v1/coverage/sncf/stop_points/stop_point:SNCF:${departure}:Train/departures`);
         var trains = await response.json();
         if(trains.hasOwnProperty("error")){
             trains = {};
@@ -48,4 +49,17 @@ const findTrainStation = module.exports.findTrainStation = async (departure, arr
     }
 }
 
-findTrainStation("87686006","87683268");
+const findweather = module.exports.findTrainStation = async (latitude, longitude) => {
+    try {
+        const response = await fetch(
+            `https://www.infoclimat.fr/public-api/gfs/json?_ll=${latitude},${longitude}${config.meteo}`
+        );
+        const data = await response.json();
+        
+        //Voir quel modif a faire (sur les noms des columns "2m" avec du regex)
+        return data
+    }catch (err) {
+        console.log("Can't find the weather", err)
+        return {};
+    }
+}
