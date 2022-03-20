@@ -3,13 +3,34 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/css/index.css">
-        <link rel="icon" type="image/x-icon" href="/assets/pictures/trainIcon.ico">
+        <link rel="stylesheet" href="./css/index.css">
+        <link rel="icon" type="image/x-icon" href="../assets/pictures/trainIcon.ico">
         <title>Stalk Train</title>
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
 
     <body class="w-screen h-screen overflow-hidden antialiased background">
+        <div class="flex">
+            <section id="from_section" class="flex-none w-96 relative p-6">
+                <header>
+                    <h2 class="p-4">Trouvez des informations sur vos trains</h2>
+                </header>
+                <nav class="flex justify-center space-x-4">
+                    <a href="#" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900" id="trajet-btn">Trajet</a>
+                    <a href="#" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900" id="gare-btn">Gare</a>
+                    <a href="#" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900" id="train-btn">N° Train</a>
+                </nav>
+                <hr class="p-3">
+                <div id="form_section">
+
+                </div>
+            </section>
+            <section class="flex-auto p-6">
+                Zone pour map
+            </section>
+        </div>
+
+        <br><br><br><br><br>
         <div>
             <form action="" method="POST" class="w-100 p-5 bg-white bg-opacity-70 flex items-center">
                 <a class="text-center w-3/5">Quel Train souhaites tu stalk aujourd'hui ?</a>
@@ -20,5 +41,7 @@
                 </div>
             </form>
         </div>
+        <script type="text/javascript" charset="UTF-8" src="index.js"></script>
+
     </body>
 </html>
