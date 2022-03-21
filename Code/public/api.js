@@ -49,7 +49,7 @@ const findTrainStation = module.exports.findTrainStation = async (departure, arr
     }
 }
 
-const findweather = module.exports.findTrainStation = async (latitude, longitude) => {
+const findweather = module.exports.findweather = async (latitude, longitude) => {
     try {
         const response = await fetch(
             `https://www.infoclimat.fr/public-api/gfs/json?_ll=${latitude},${longitude}${config.meteo}`
