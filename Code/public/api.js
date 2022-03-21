@@ -1,5 +1,6 @@
-const fetch = require('node-fetch');
 const fs = import('fs');
+const fetch = import('node-fetch');
+
 //const { data } = require('cheerio/lib/api/attributes');
 const sncf_api_key = "6430b7e5-f72b-46a3-85f2-6920e725b010"
 const sncf_weather_key = "6430b7e5-f72b-46a3-85f2-6920e725b010"
@@ -19,7 +20,7 @@ const findTrainJourney = module.exports.findTrainJourney = async id => {
             if(trains.hasOwnProperty("error")){
                 trains = {};
             }
-            }
+        }
         console.log(trains)
         return trains;
     }catch (err) {
