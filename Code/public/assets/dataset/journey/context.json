@@ -1,0 +1,43 @@
+{
+    "@context": {
+      "@vocab": "http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7",
+      "@base": "http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7",
+      "owl":"http://www.w3.org/2002/07/owl#",
+      "rdf":"http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+      "xml":"http://www.w3.org/XML/1998/namespace",
+      "xsd":"http://www.w3.org/2001/XMLSchema#",
+      "rdfs":"http://www.w3.org/2000/01/rdf-schema#",
+
+      "pagination":null,
+      "links":null,
+      "disruptions":null,
+      "feed_publishers":null,
+      "context":null,
+      "codes": null,
+      "name": "train_name",
+      "journey_pattern": null,
+      "disruptions": null,
+      "calendars": null,
+      "name": "station_name",
+      "links": null,
+      "coord": null,
+      "label": null,
+      "equipments": null,
+      "id": null,
+      "utc_arrival_time": null,
+      "utc_departure_time": null,
+      "headsign": null,
+      "skipped_stop": null,
+      "arrival_time": "arrival_time",
+      "drop_off_allowed": null,
+      "pickup_allowed": null,
+      "departure_time": "departure_time",
+      "validity_pattern": null,
+      "headsign": null,
+      "id": null,
+      "trip": null
+     },
+     "@type": "ItemList",
+     "itemListElement":
+    []
+}
