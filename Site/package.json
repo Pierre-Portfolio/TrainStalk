@@ -10,7 +10,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@rdfjs/data-model": "^2.0.0",
     "express": "^4.17.3",
-    "node-fetch": "^3.2.3"
-  }
+    "fs": "^0.0.1-security",
+    "jsonld": "^5.2.0",
+    "jsonld-streaming-serializer": "^1.3.0",
+    "node-fetch": "^3.2.3",
+    "rdf-parse": "^2.0.0"
+  },
+  "type": "module"
 }
