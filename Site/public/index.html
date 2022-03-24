@@ -12,9 +12,9 @@
 
     <body class="w-screen h-screen overflow-hidden antialiased background">
         <div class="flex">
-            <section id="from_section" class="flex-none w-1/2 mt-72 relative p-6">
+            <section id="from_section" class="bg-white flex-none w-1/2 pb-64 pt-56 relative p-6">
                 <header>
-                    <h2 class="p-4">Trouvez des informations sur vos trains</h2>
+                    <h2 class="p-4 text-center">Trouvez des informations sur vos trains</h2>
                 </header>
                 <nav class="flex justify-center space-x-4">
                     <a href="#" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900" id="trajet-btn"><i class="fa-solid fa-location-dot"></i> Trajet</a>
@@ -22,15 +22,16 @@
                     <a href="#" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900" id="train-btn"><i class="fa-solid fa-train-subway"></i> N° Train</a>
                 </nav>
                 <hr class="p-3">
-                <div id="form_section">
+                <div id="form_section" class="flex flex-col justify-center">
                     <section id="section_form">
 
                     </section>
-                    <button class="h-10 px-6 font-semibold rounded-md bg-black text-white" id="btn_send" value="a">Envoyer</button>
+                    <button class="ml-72 w-32 h-10 px-6 font-semibold rounded-md bg-black text-white" id="btn_send" value="a">Envoyer</button>
                 </div>
             </section>
-            <section class="flex-auto w-1/2 h-full p-6">
-                <img class="h-full" src="./assets/img/background.jpg" alt="imageTrain">
+            <section class="flex-auto w-1/2 h-full">
+                <img class="fixed top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -z-50" 
+                style="transform: translateX(-50%) translateY(-50%); background-size: cover;" src="./assets/img/bg2.png" alt="imageTrain">
             </section>
         </div>
         <script type="text/javascript" charset="UTF-8" src="index.js"></script>
