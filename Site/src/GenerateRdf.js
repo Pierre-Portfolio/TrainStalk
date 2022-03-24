@@ -18,7 +18,6 @@ const GenerateRdfDynamic = async (data_context, data_contains) => {
 };
 
 const rdfGare = RecupDynamicLien('./src/Onthologies/Data/Gare/jsonLD.json')
-const rdfFinal = rdfGare
 
 // a faire pour les 2 lien dynamique donc recup leur json respectif
 GenerateRdfDynamic('./src/Onthologies/Data/Gare/context.json','./src/Onthologies/Data/Gare/data.json')
