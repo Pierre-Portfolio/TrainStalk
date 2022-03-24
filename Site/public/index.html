@@ -4,22 +4,22 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="./css/index.css">
-        <link rel="icon" type="image/x-icon" href="./img/trainIcon.ico">
-	    <link href="../assets/fontawesome/css/all.min.css" ref="stylesheet">
+        <link rel="icon" type="image/x-icon" href="./assets/img/trainIcon.ico">
         <title>Stalk Train</title>
         <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://kit.fontawesome.com/9821338389.js" crossorigin="anonymous"></script>
     </head>
 
     <body class="w-screen h-screen overflow-hidden antialiased background">
         <div class="flex">
-            <section id="from_section" class="flex-none w-96 relative p-6">
+            <section id="from_section" class="flex-none w-1/2 relative p-6">
                 <header>
                     <h2 class="p-4">Trouvez des informations sur vos trains</h2>
                 </header>
                 <nav class="flex justify-center space-x-4">
-                    <a href="#" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900" id="trajet-btn">Trajet</a>
+                    <a href="#" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900" id="trajet-btn"><i class="fa-solid fa-location-dot"></i> Trajet</a>
                     <!-- <a href="#" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900" id="gare-btn">Gare</a>-->
-                    <a href="#" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900" id="train-btn">N° Train</a>
+                    <a href="#" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900" id="train-btn"><i class="fa-solid fa-train-subway"></i> N° Train</a>
                 </nav>
                 <hr class="p-3">
                 <div id="form_section">
@@ -29,23 +29,10 @@
                     <button class="h-10 px-6 font-semibold rounded-md bg-black text-white" id="btn_send" value="a">Envoyer</button>
                 </div>
             </section>
-            <section class="flex-auto p-6">
+            <section class="flex-auto w-1/2 p-6">
                 Zone pour map
             </section>
         </div>
-
-        <br><br><br><br><br>
-        <div>
-            <form action="" method="POST" class="w-100 p-5 bg-white bg-opacity-70 flex items-center">
-                <a class="text-center w-3/5">Quel Train souhaites tu stalk aujourd'hui ?</a>
-                <div class="w-2/5 flex items-center">
-                    <input type="text" name="name"
-                        class="h-8 w-1/2 px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none"
-                        placeholder="Numero De Train" required>
-                </div>
-            </form>
-        </div>
         <script type="text/javascript" charset="UTF-8" src="index.js"></script>
-
     </body>
 </html>
