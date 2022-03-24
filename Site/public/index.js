@@ -53,8 +53,8 @@ btn_send.addEventListener('click', async () =>{
         console.log(train_journey)
     }else if(btn_send.value == 'train'){
         const id_train = document.querySelector('#id_train').value
-        var train_journey = findTrainJourney(id_train)
-        console.log(train_journey)
+        var train_journey_json = await findTrainJourney(id_train)
+        await sendJson('/trajet/id', train_journey_json)
     }
 })
 
@@ -65,8 +65,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 
 // Requests for API
-
-
 const sncf_api_key = "6430b7e5-f72b-46a3-85f2-6920e725b010"
 const sncf_weather_key = "6430b7e5-f72b-46a3-85f2-6920e725b010"
 const options_fetch = {
@@ -93,7 +91,6 @@ const findTrainJourney = async id => {
                 trains = {};
             }
         }
-        console.log(trains)
         return trains;
     }catch (err) {
         console.log("Can't find the train", err)
@@ -128,7 +125,6 @@ const findweather = async (latitude, longitude) => {
             `https://www.infoclimat.fr/public-api/gfs/json?_ll=${latitude},${longitude}${config.meteo}`
         );
         const data = await response.json();
-        
         //Voir quel modif a faire (sur les noms des columns "2m" avec du regex)
         return data
     }catch (err) {
@@ -137,3 +133,14 @@ const findweather = async (latitude, longitude) => {
     }
 }
 
+const sendJson = async (url, jsonData) => {
+    const rep = await fetch("trajet/id", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(jsonData)
+    });
+    const content =  await rep.json();
+    console.log(content)
+}
