@@ -1,0 +1,1 @@
+Train(?t)^Depart(?d)^ObjectUnionOf(swrlb:greaterThan(220000,?d), swrlb:greaterThan(?d,080000)) -> nightTrain(?t)
