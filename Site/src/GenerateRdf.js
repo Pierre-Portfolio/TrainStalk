@@ -14,41 +14,32 @@ export const GenerateRdfDynamic = async (data_context, data_contains) => {
 
 // a faire pour les 2 lien dynamique donc recup leur json respectif
 
+
 const rdfGare = await GenerateRdfDynamic('./src/Onthologies/Data/Gare/context.json','./src/Onthologies/Data/Gare/data.json')
 //console.log(rdfGare)
 
 import * as rdfstore from 'rdfstore'
 
+var prefix = "PREFIX owl:http://www.w3.org/2002/07/owl#\n" +
+    "PREFIX rdf:http://www.w3.org/1999/02/22-rdf-syntax-ns#\n" +
+    "PREFIX xml:http://www.w3.org/XML/1998/namespace\n" +
+    "PREFIX xsd:http://www.w3.org/2001/XMLSchema#\n" +
+    "PREFIX rdfshttp://www.w3.org/2000/01/rdf-schema#"
+
+var query_uicFromGare = "SELECT ?UIC " +
+    "WHERE{ " +
+    "?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7NomGare> \"Marssac-sur-Tarn\" ." +
+    "?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7IDGare> ?UIC" +
+    "}"
+
+var query_allGareName = "SELECT ?name WHERE{?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7NomGare> ?name}"
+
 var store = new Store({name:"test", overwrite:true}, function (err,store){
     store.load('text/n3', rdfGare, function (s,d){
-        store.execute("SELECT ?subject ?predicate ?object WHERE {?subject ?predicate ?object} LIMIT 1", function (success, results){
-            console.log(success, results)
+        store.execute(query_allGareName, function (success, results){
+            console.log(results)
         });
     });
 })
 
-
-/*
-rdfstore.create(function(err, store) {
-    store.execute('LOAD <http://dbpedia.org/resource/Tim_Berners-Lee> INTO GRAPH <http://example.org/people>', function() {
-        store.setPrefix('dbp', 'http://dbpedia.org/resource/');
-    });
-    store.load("")
-    console.log(store)
-
-});*/
-
-/*
-var rdfstore = require('rdfstore')
-, fs = require('fs');
-
-rdfstore.create(function(store){
-  var rdf = fs.readFileSync('/var/foo/bar.ttl').toString();
-  store.load('text/turtle', rdf, function(s,d){
-    console.log(s,d);
-    store.execute("SELECT * WHERE { ?s ?p ?o } LIMIT 10", function(success, results){
-      console.log(success, results);
-    });
-  });
-});
- */
+//fs.writeFileSync('rdfGare.rdf', rdfGare)
