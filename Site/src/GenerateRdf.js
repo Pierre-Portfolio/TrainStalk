@@ -38,4 +38,4 @@ var store = new Store({name:"test", overwrite:true}, function (err,store){
     });
 });
 */
-//fs.writeFileSync('rdfGare.rdf', rdfGare)
+fs.writeFileSync('./src/Onthologies/Data/Gare/gare-data.nq', rdfGare)
