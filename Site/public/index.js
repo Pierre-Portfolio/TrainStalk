@@ -42,22 +42,35 @@ btn_train.addEventListener('click', ()=>{
 
 btn_send.addEventListener('click', async () =>{
     if(btn_send.value == 'trajet'){
-        const gare_dep = document.querySelector('#dep_station').value
-        const gare_arr = document.querySelector('#arr_station').value
-        console.log(gare_dep,gare_arr)
-        // Find stations UIC in the db with SPARQL
-        uic_dep = "123456789"
-        uic_arr = "123456789"
-        var train_journey = findTrainStation(uic_dep, uic_arr)
-        console.log(train_journey)
+        const gare_dep = document.querySelector('#dep_station').value;
+        const gare_arr = document.querySelector('#arr_station').value;
+
+        let jsonSend_gare = {"garedep":gare_dep, "garearr":gare_arr};
+        let uic = await sendJson("/trajet/gare/search", jsonSend_gare);
+        console.log(uic)
+        /*
+        if(uic !== null){
+            let train_journey_send = findTrainStation(uic.uic_dep, uic.uic_arr);
+            let rep = await sendJson(`/trajet/id`, train_journey_send)
+            if(rep !== {}){
+                console.log(rep)
+            }else{
+
+            }
+        }else {
+
+        }
+        */
     }else if(btn_send.value == 'train'){
         const id_train = document.querySelector('#id_train').value
-        var train_journey_json = await findTrainJourney(id_train)
-        await sendJson('/trajet/id', train_journey_json)
+        let train_journey_json = await findTrainJourney(id_train)
+        let jsonSend = {id:id_train, val : train_journey_json};
+        let rep = await sendJson(`/trajet/id`, jsonSend)
     }
 })
 
 document.addEventListener('DOMContentLoaded', ()=>{
+    let allGare = getGare();
     renderForm('trajet')
 })
 
@@ -71,7 +84,6 @@ const options_fetch = {
     "Authorization": "6430b7e5-f72b-46a3-85f2-6920e725b010"
   }
 }
-
 
 const findTrainJourney = async id => {
     let today = new Date()
@@ -109,7 +121,7 @@ const findTrainStation = async (departure, arrival) => {
             res = res[0]["links"].filter(lk=>lk["type"] === "vehicle_journey");
             res = res[0]["id"];
             res = res.split(':');
-            return findTrainJourney(res[3]);
+            return {"id":res[3],"val":findTrainJourney(res[3])};
         }
         return trains;
     }catch (err) {
@@ -133,7 +145,7 @@ const findweather = async (latitude, longitude) => {
 }
 
 const sendJson = async (url, jsonData) => {
-    const rep = await fetch("trajet/id", {
+    const rep = await fetch(url, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -142,6 +154,7 @@ const sendJson = async (url, jsonData) => {
     });
     const content =  await rep.json();
     console.log(content)
+    return content
 }
 
 const getGare = async() =>{

@@ -1,4 +1,4 @@
-const query_allGareName = "SELECT ?name WHERE{?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7NomGare> ?name}"
+/*const query_allGareName = "SELECT ?name WHERE{?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7NomGare> ?name}"
 
 const query_uicFromGare = (gareName) =>{
     return `SELECT ?UIC WHERE`+
@@ -6,9 +6,10 @@ const query_uicFromGare = (gareName) =>{
         `{?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Ville> ${gareName} }.`+
         `?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7IDGare> ?UIC}`;
 }
-
+*/
 /* == Check if idtrain == value in RDF ==*/ //TrainName a changer
-const ASK_getJourney = (idtrain) => {
+
+/*const ASK_getJourney = (idtrain) => {
     return `ASK {?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Name> ${idtrain}}`
 }
 
@@ -21,4 +22,4 @@ const get_coord = (gareName) => {
         `{ {?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7NomGare> ${gareName}} UNION`+
         `{?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Ville> ${gareName} }.`+
         `?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Coordinates> ?coord}`;
-}
+}*/
