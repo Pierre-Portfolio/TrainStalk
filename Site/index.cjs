@@ -112,7 +112,7 @@ app.post('/gare', (request, response) =>
                     store.execute(query_allGareName, function(err, res){
                         let val_ret = res.map(x=>x.name.value);
                         if(val_ret.length !==  0){
-                            response.send({"All_train":val_ret,"success":true})
+                            response.send({"All_Gare":val_ret,"success":true})
                         }else{
                             response.send({"success":false})
                         }
