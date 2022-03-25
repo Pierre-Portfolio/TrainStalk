@@ -21,27 +21,57 @@
     
 
 
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#isStationArivOf -->
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#hasArrivalHour -->
 
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#isStationArivOf"/>
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#hasArrivalHour">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Trip"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Hour"/>
+    </owl:ObjectProperty>
     
 
 
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#isStationDepOf -->
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#hasArrivalStation -->
 
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#isStationDepOf"/>
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#hasArrivalStation">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Trip"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Station"/>
+    </owl:ObjectProperty>
     
 
 
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#isTrainOf -->
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#hasDepartureHour -->
 
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#isTrainOf"/>
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#hasDepartureHour">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Trip"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Hour"/>
+    </owl:ObjectProperty>
     
 
 
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#isTripOf -->
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#hasDepartureStation -->
 
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#isTripOf"/>
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#hasDepartureStation">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Trip"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Station"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#isStationOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#isStationOf">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Station"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#City"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#isWeatherOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#isWeatherOf">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Weather"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#City"/>
+    </owl:ObjectProperty>
     
 
 
@@ -56,99 +86,54 @@
     
 
 
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Arrive -->
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Arrival -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Arrive">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Trajet"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Arrival">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Trip"/>
     </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#City -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#City"/>
     
 
 
     <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Coordinates -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Coordinates">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Gare"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#City"/>
     </owl:Class>
     
 
 
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Date -->
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Department -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Date">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Meteo"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Department">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#City"/>
     </owl:Class>
     
 
 
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Depart -->
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Departure -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Depart">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Trajet"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Departure">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Trip"/>
     </owl:Class>
     
 
 
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Departement -->
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Hour -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Departement">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Gare"/>
-    </owl:Class>
+    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Hour"/>
     
 
 
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Gare -->
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Hours -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Gare"/>
-    
-
-
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#GareArrive -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#GareArrive">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Arrive"/>
-        <owl:disjointWith rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#GareDepart"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#GareDepart -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#GareDepart">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Depart"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#HallArrive -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#HallArrive">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Arrive"/>
-        <owl:disjointWith rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#HallDepart"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#HallDepart -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#HallDepart">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Depart"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#HeureArrive -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#HeureArrive">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Arrive"/>
-        <owl:disjointWith rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#HeureDepart"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#HeureDepart -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#HeureDepart">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Depart"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Hours">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Hour"/>
     </owl:Class>
     
 
@@ -156,7 +141,7 @@
     <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Humidity -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Humidity">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Meteo"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Weather"/>
     </owl:Class>
     
 
@@ -164,22 +149,24 @@
     <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#IDGare -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#IDGare">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Gare"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Station"/>
     </owl:Class>
     
 
 
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#IDTrajet -->
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#IDTrip -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#IDTrajet">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Trajet"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#IDTrip">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Trip"/>
     </owl:Class>
     
 
 
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Meteo -->
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Minutes -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Meteo"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Minutes">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Hour"/>
+    </owl:Class>
     
 
 
@@ -194,7 +181,7 @@
     <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Nebulosite -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Nebulosite">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Meteo"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Weather"/>
     </owl:Class>
     
 
@@ -202,7 +189,7 @@
     <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#NomGare -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#NomGare">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Gare"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Station"/>
     </owl:Class>
     
 
@@ -210,7 +197,7 @@
     <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Rain -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Rain">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Meteo"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Weather"/>
     </owl:Class>
     
 
@@ -226,86 +213,147 @@
     <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Snow -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Snow">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Meteo"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Weather"/>
     </owl:Class>
     
 
 
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#TER -->
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Station -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#TER"/>
-    
-
-
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#TGV -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#TGV"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Station"/>
     
 
 
     <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Temperature -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Temperature">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Meteo"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Weather"/>
     </owl:Class>
     
 
 
     <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Train -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Train">
-        <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#isTrainOf"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Trajet"/>
-            </owl:Restriction>
-        </owl:equivalentClass>
-    </owl:Class>
+    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Train"/>
     
 
 
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#TrainLatitude -->
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Trip -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#TrainLatitude">
+    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Trip"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Type -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Type">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Train"/>
     </owl:Class>
     
 
 
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#TrainLongitude -->
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Weather -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#TrainLongitude">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Train"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Trajet -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Trajet">
-        <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#isTripOf"/>
-                <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Train"/>
-            </owl:Restriction>
-        </owl:equivalentClass>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Ville -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Ville">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Gare"/>
-    </owl:Class>
+    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Weather"/>
     
 
 
     <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Wind -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Wind">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Meteo"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Weather"/>
     </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Lyon -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Lyon">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Station"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Lyon-Marseille -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Lyon-Marseille">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Trip"/>
+        <hasArrivalHour rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#18h"/>
+        <hasArrivalStation rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Marseille"/>
+        <hasDepartureHour rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#17h"/>
+        <hasDepartureStation rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Lyon"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Marseille -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Marseille">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#City"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Paris -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Paris">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Station"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Paris-Lyon -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Paris-Lyon">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Trip"/>
+        <hasArrivalHour rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#15h"/>
+        <hasArrivalStation rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Lyon"/>
+        <hasDepartureHour rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#13h"/>
+        <hasDepartureStation rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Paris"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#13h -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#13h">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Hour"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#15h -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#15h">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Hour"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#17h -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#17h">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Hour"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#18h -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#18h">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Hour"/>
+    </owl:NamedIndividual>
 </rdf:RDF>
 
 
