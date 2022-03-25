@@ -100,7 +100,7 @@ app.post('/trajet/id', (request, response) =>
                                 if(res && res.length !== 0){
                                     console.log(res)
                                     let val_res = res.map(x => {
-                                        return {"station_name ": x.stop_name.value,"arrival ": x.arrival.value, "departure ": x.depart.value }
+                                        return {"station_name ": x.stop_name.value,"arrival ": x.arrival.value, "departure ": x.depart.value, "lat":x.lat.value, "long": x.long.value }
                                     });
                                     console.log(val_res)
                                     response.send({"values":val_res,"success":true})
@@ -181,13 +181,16 @@ const ASK_getJourney = (idtrain) => {
 }
 
 const getJourney = (idtrain) => {
-    return `SELECT ?arrival ?depart ?stop_name  WHERE {
-?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7train_id> "${idtrain}".
+    return `SELECT ?arrival ?depart ?stop_name ?lat ?long WHERE {
+?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7train_id> "9580".
 ?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7stop_times> ?y.
 ?y <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Arrive> ?arrival.
 ?y <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Depart> ?depart.
 ?y <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7stop_point> ?z.
-?z <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Name> ?stop_name
+?z <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Name> ?stop_name.
+?z <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7coord> ?a.
+?a <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7TrainLatitude> ?lat.
+?a <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7TrainLatitude> ?long
 }`
 }
 
