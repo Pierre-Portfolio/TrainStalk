@@ -26,17 +26,12 @@ var prefix = "PREFIX owl:http://www.w3.org/2002/07/owl#\n" +
     "PREFIX xsd:http://www.w3.org/2001/XMLSchema#\n" +
     "PREFIX rdfshttp://www.w3.org/2000/01/rdf-schema#"
 
-var query_uicFromGare = "SELECT ?UIC " +
-    "WHERE{ " +
-    "?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7NomGare> \"Marssac-sur-Tarn\" ." +
-    "?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7IDGare> ?UIC" +
-    "}"
 
-var query_allGareName = "SELECT ?name WHERE{?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7NomGare> ?name}"
+var q =
 
 var store = new Store({name:"test", overwrite:true}, function (err,store){
     store.load('text/n3', rdfGare, function (s,d){
-        store.execute(query_allGareName, function (success, results){
+        store.execute(q, function (success, results){
             console.log(results)
         });
     });
