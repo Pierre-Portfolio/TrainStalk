@@ -1,20 +1,17 @@
 Finish
 1 Créer une ontology
-
-TO DO
 2 Créer les individu
 3 Créer des Triples store Use Jena Fuseki ? ( bonus )
 4 Recup en Json , convertir en Json-ld, on va créer les triplet et on les stock dans le triple store
-5 On créer les requete SparQL ( 3 - 4 ) requete PARLANTE et depend de nos objectif de notre application
-6 Créer les RULES car les onthology ny reponde pas
-7 CRéer une application web 
-
 
 Bonus :
 2 sources minimun mais go plus de source ( pas les meme schéma )
 AVOIR DES CONTEXTE DIFFERENT QUI PEUVENT ETRE CORRELLE
 AVOIR DES DONNEE EN TEMP REEL => TRES TRES BIEN ( la convertion de donnée , step starting au json )
 Créer une onthology Complexe ( plusieur classe & sous class comme dans les pizza pas plus )
-Proposer le real time en option
-Une carte de France ?
-Dockerisé l'application
+
+TO DO:
+5 On créer les requete SparQL ( 3 - 4 ) requete PARLANTE et depend de nos objectif de notre application
+6 Créer les RULES car les onthology ny reponde pas
+7 CRéer une application web 
+8 Une carte de France ?
