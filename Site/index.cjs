@@ -41,6 +41,8 @@ app.post('/trajet/id', (request, response) =>
 });
 
 /*recup gare*/
+app.get('/gare', (request, response) => {});
+
 app.get('/', (request, response) => {});
 
 app.listen(PORT);
