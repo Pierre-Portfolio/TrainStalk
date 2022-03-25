@@ -104,11 +104,20 @@ const findTrainJourney = async id => {
             }
         }
 
+        trains = trains['vehicle_journeys'];
+        trains[0]['size'] = trains[0]['id'].split(':')[5];
+        trains[0].train_id = trains[0].name;
+        delete trains[0].name;
+        delete trains[0]['journey_pattern'];
+        delete trains[0]['headsign'];
+        delete trains[0]['trip'];
+        /*
         trains = trains['vehicle_journeys']
         trains[0]['size'] = trains[0]['id'].split(':')[5]
         delete trains[0]['journey_pattern']
         delete trains[0]['headsign']
-        delete trains[0]['trip']
+        delete trains[0]['trip']*/
+
         return trains[0];
     }catch (err) {
         console.log("Can't find the train", err)
@@ -170,6 +179,7 @@ const sendJson = async (url, jsonData) => {
         body: JSON.stringify(jsonData)
     });
     const content =  await rep.json();
+    console.log(content);
     return content
 }
 

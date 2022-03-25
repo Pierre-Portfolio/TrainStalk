@@ -92,18 +92,24 @@ app.post('/trajet/id', (request, response) =>
         try {
             const module = await import('./src/GenerateRdf.js');
             const rdfTrajet = await module.GenerateRdfDynamic("./src/Onthologies/Data/Train/context.json","./src/Onthologies/Data/Train/trajet-data.json")
-            console.log(rdfTrajet)
             let store = new rdfstore.Store(function (err, store){
                 store.load('text/n3', rdfTrajet, (s,d)=>{
                     store.execute(ASK_getJourney(id), function(err, res){
-                        if (res.value == "yes"){
+                        if (res === true){
                             store.execute(getJourney(id),function (err,res) {
                                 if(res && res.length !== 0){
-                                    response.send({"success":true})
+                                    console.log(res)
+                                    let val_res = res.map(x => {
+                                        return {"station_name ": x.stop_name.value,"arrival ": x.arrival.value, "departure ": x.depart.value }
+                                    });
+                                    console.log(val_res)
+                                    response.send({"values":val_res,"success":true})
                                 }else{
                                     response.send({"success":false})
                                 }
                             });
+                        }else{
+                            response.send({"success":false})
                         }
                     });
                 });
@@ -171,16 +177,23 @@ const query_uicFromGare = (gareName) =>{
 
 /* == Check if idtrain == value in RDF ==*/ //TrainName a changer
 const ASK_getJourney = (idtrain) => {
-    return `ASK {?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Name> ${idtrain}}`
+    return `ASK {?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7train_id> "${idtrain}"}`
 }
 
 const getJourney = (idtrain) => {
-    return `SELECT * WHERE {?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Name> ${idtrain}}`
+    return `SELECT ?arrival ?depart ?stop_name  WHERE {
+?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7train_id> "${idtrain}".
+?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7stop_times> ?y.
+?y <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Arrive> ?arrival.
+?y <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Depart> ?depart.
+?y <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7stop_point> ?z.
+?z <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Name> ?stop_name
+}`
 }
 
 const get_coord = (gareName) => {
     return `SELECT ?cood WHERE`+
-        `{ {?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7NomGare> ${gareName}} UNION`+
-        `{?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Ville> ${gareName} }.`+
+        `{ {?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7NomGare> "${gareName}"} UNION`+
+        `{?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Ville> "${gareName}"}.`+
         `?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Coordinates> ?coord}`;
 }

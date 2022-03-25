@@ -14,9 +14,10 @@ export const GenerateRdfDynamic = async (data_context, data_contains) => {
 // a faire pour les 2 lien dynamique donc recup leur json respectif
 
 
-const rdfGare = await GenerateRdfDynamic('./src/Onthologies/Data/Gare/context.json','./src/Onthologies/Data/Gare/data.json')
+//const rdfGare = await GenerateRdfDynamic('./src/Onthologies/Data/Gare/context.json','./src/Onthologies/Data/Gare/data.json')
 //console.log(rdfGare)
-
+//const rdfTrajet = await GenerateRdfDynamic('./src/Onthologies/Data/Train/context.json','./src/Onthologies/Data/Train/trajet-data.json')
+//console.log(rdfTrajet);
 
 var prefix = "PREFIX owl:http://www.w3.org/2002/07/owl#\n" +
     "PREFIX rdf:http://www.w3.org/1999/02/22-rdf-syntax-ns#\n" +
@@ -24,18 +25,26 @@ var prefix = "PREFIX owl:http://www.w3.org/2002/07/owl#\n" +
     "PREFIX xsd:http://www.w3.org/2001/XMLSchema#\n" +
     "PREFIX rdfs:http://www.w3.org/2000/01/rdf-schema#";
 
-let q = `SELECT ?UIC WHERE`+
-    `{ {?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7NomGare> "Mareil-sur-Mauldre"} UNION`+
-    `{?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Ville> "Mareil-sur-Mauldre" }.`+
-    `?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7IDGare> ?UIC}`
+//let q = `SELECT ?stop_name ?arrival WHERE {{?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Train_id> "9580".?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7stop_times> ?y. ?y <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7stop_point> ?z. ?z <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Station_Name> ?stop_name} UNION {?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Train_id> "9580". ?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7stop_times> ?y. ?y <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Arrive> ?arrival }}`
+
+/*let q = `SELECT ?arrival ?depart ?stop_name  WHERE {
+?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7train_id> "9580".
+?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7stop_times> ?y.
+?y <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Arrive> ?arrival.
+?y <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Depart> ?depart.
+?y <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7stop_point> ?z.
+?z <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Name> ?stop_name
+}`*/
 
 /*
+let q = `ASK {?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7train_id> "9580"}`
+
 var store = new Store({name:"test", overwrite:true}, function (err,store){
-    store.load('text/n3', rdfGare, function (s,d){
+    store.load('text/n3', rdfTrajet, function (s,d){
         store.execute(q, function (success, results){
             console.log(results)
         });
     });
 });
 */
-fs.writeFileSync('./src/Onthologies/Data/Gare/gare-data.nq', rdfGare)
+//fs.writeFileSync('./src/Onthologies/Data/Gare/gare-data.nq', rdfGare)
