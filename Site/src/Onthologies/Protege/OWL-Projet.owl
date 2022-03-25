@@ -108,9 +108,9 @@
     
 
 
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Departement -->
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Department -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Departement">
+    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Department">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#City"/>
     </owl:Class>
     
@@ -124,17 +124,17 @@
     
 
 
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Heures -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Heures">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Hour"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Hour -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Hour"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Hours -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Hours">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Hour"/>
+    </owl:Class>
     
 
 
@@ -289,7 +289,9 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Lyon-Marseille">
         <rdf:type rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Trip"/>
+        <hasArrivalHour rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#18h"/>
         <hasArrivalStation rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Marseille"/>
+        <hasDepartureHour rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#17h"/>
         <hasDepartureStation rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Lyon"/>
     </owl:NamedIndividual>
     
@@ -336,6 +338,20 @@
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#15h">
         <rdf:type rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Hour"/>
     </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#17h -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#17h">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Hour"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#18h -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#18h"/>
 </rdf:RDF>
 
 
