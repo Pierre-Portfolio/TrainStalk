@@ -15,3 +15,12 @@ TO DO:
 6 Créer les RULES car les onthology ny reponde pas
 7 CRéer une application web 
 8 Une carte de France ?
+Rating et image des villes api ?
+
+context train:
+
+1) Garder que data["vehicle_journeys"]
+2) Virer "journey_pattern"
+3) Virer "headsign"
+4) on vire "trip"
+6) Gererer un Size depuis l'id du train

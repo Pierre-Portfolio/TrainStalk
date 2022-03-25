@@ -121,7 +121,7 @@ const findTrainStation = async (departure, arrival) => {
 const findweather = async (latitude, longitude) => {
     try {
         const response = await fetch(
-            `https://www.infoclimat.fr/public-api/gfs/json?_ll=${latitude},${longitude}${config.meteo}`
+            `https://www.infoclimat.fr/public-api/gfs/json?_ll=${latitude},${longitude}&_auth=BhxSRQF%2FVXcFKAE2DnhXfgBoDjtbLQUiUCwKaVw5Uy4EbwRlBmYAZgdpVSgDLFBmU34BYg02UmIBalUtCnhTMgZsUj4BalUyBWoBZA4hV3wALg5vW3sFIlAyCmpcN1MuBGYEZAZiAHwHalU3AztQelNnAWMNLVJ1AWNVNApmUzgGZlI0AWtVMAVoAWYOIVd8ADUObltjBThQYAptXDZTZAQzBDEGMwBnB21VNgMtUGNTaQFkDTVSbQFgVTQKb1MvBnpSTwERVSoFKgEhDmtXJQAuDjtbOgVp&_c=3523bcf3629d763891b8d24665da6a4c`
         );
         const data = await response.json();
         //Voir quel modif a faire (sur les noms des columns "2m" avec du regex)
