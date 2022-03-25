@@ -20,7 +20,7 @@
     "niveau_de_la_mer": null,
     "pluie": "Rain",
     "pluie_convective": null,
-    "humidite_2m": null,
+    "humidite_2m": "Humidity",
     "vent_moyen_10m": "Wind",
     "vent_rafales_10m": null,
     "vent_direction_10m": null,
@@ -30,7 +30,7 @@
     "haute": null,
     "moyenne": null,
     "basse": null,
-    "totale": null
+    "totale": "Nebulosite"
    },
    "@type": "ItemList",
    "itemListElement":
