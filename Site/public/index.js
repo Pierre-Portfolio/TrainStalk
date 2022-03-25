@@ -5,6 +5,12 @@ const btn_trajet = document.querySelector('#trajet-btn');
 const btn_train = document.querySelector('#train-btn');
 const section_form = document.querySelector('#section_form');
 const btn_send = document.querySelector('#btn_send');
+
+let inpuGareDepart = null;
+let inpuGareArrive = null;
+let loading = true;
+
+console.log(inpuGareDepart)
 let all_Gare = [];
 function renderForm(type) {
     let txt = ''
@@ -13,19 +19,53 @@ function renderForm(type) {
             "<label for='id_train'><h3>N° de train</h3></label><input type=\"text\" id=\"id_train\" class=\"h-8 px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none\" placeholder=\"Numero De Train\" required>\n" +
             "</div>\n"
         btn_send.value = "train";
-
     }else if(type == "trajet"){
         txt="<div class=\"items-center flex\" style='margin-bottom: 2em'>" +
             "   <label for='dep_station' class=\"w-96 px-3 leading-tight text-gray-700\">Gare de départ</label>" +
-            "   <input value='Abbeville' type=\"text\" id=\"dep_station\" class=\"flex-auto h-8 px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none\" placeholder=\"Gare de départ\" required>\n" +
-            "</div>"+
+            "   <input list=\"data1\" id=\"dep_station\" class=\"flex-auto h-8 px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none\" placeholder=\"Gare de départ\" required>\n" +
+            "<datalist id=\"data1\"></div></div>"+
             "<div class=\"items-center flex\" style='margin-bottom: 2em'>\n" +
             "   <label for='arr_station' class=\"w-96 px-3 leading-tight text-gray-700\">Gare d'arrivé</label>" +
-            "   <input value='Amiens' type=\"text\" id=\"arr_station\" class=\"flex-auto h-8 px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none\" placeholder=\"Gare de d'arrivé\" required>\n" +
-            "</div>\n"
+            "   <input list=\"data2\" type=\"text\" id=\"arr_station\" class=\"flex-auto h-8 px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none\" placeholder=\"Gare de d'arrivé\" required>\n" +
+            "<datalist id=\"data2\"></div></div>\n"
         btn_send.value = "trajet";
     }
     section_form.innerHTML = txt;
+    inpuGareDepart = document.querySelector('#dep_station');
+    inpuGareArrive = document.querySelector('#arr_station');
+
+    if (loading) {
+        inpuGareDepart.addEventListener('keyup', (event) => {
+            let parent =  document.getElementById("data1")
+            while (parent.firstChild) {
+                parent.removeChild(parent.firstChild);
+            }
+
+            let ListGare = all_Gare.filter(element => element.includes(inpuGareDepart.value))
+            for (let j = 0; j < 5; j++) {
+                let res = ListGare[j]
+                var option = document.createElement('option');
+                option.value = res;
+                parent.appendChild(option);  
+            }
+        })
+
+        inpuGareArrive.addEventListener('keyup', (event) => {
+            let parent = document.getElementById("data2")
+            while (parent.firstChild) {
+                parent.removeChild(parent.firstChild);
+            }
+
+            let ListGare = all_Gare.filter(element => element.includes(inpuGareDepart.value))
+            for (let j = 0; j < 5; j++) {
+                let res = ListGare[j]
+                var option = document.createElement('option');
+                option.value = res;
+                parent.appendChild(option);  
+            }
+        })
+    }
+    loading = false;
 }
 
 btn_trajet.addEventListener('click', ()=>{
@@ -68,12 +108,11 @@ btn_send.addEventListener('click', async () =>{
     }
 })
 
-document.addEventListener('DOMContentLoaded', ()=>{
-    all_Gare = getGare();
+document.addEventListener('DOMContentLoaded', async ()=>{
     renderForm('trajet')
+    all_Gare = await getGare();
+    all_Gare = all_Gare['All_Gare'];
 })
-
-
 
 // Requests for API
 const sncf_api_key = "6430b7e5-f72b-46a3-85f2-6920e725b010"
@@ -181,4 +220,5 @@ const getGare = async() =>{
         }
     });
     const content =  await rep.json();
+    return content
 }
