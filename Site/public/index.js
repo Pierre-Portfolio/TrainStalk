@@ -17,11 +17,11 @@ function renderForm(type) {
     }else if(type == "trajet"){
         txt="<div class=\"items-center flex\" style='margin-bottom: 2em'>" +
             "   <label for='dep_station' class=\"w-96 px-3 leading-tight text-gray-700\">Gare de départ</label>" +
-            "   <input type=\"text\" id=\"dep_station\" class=\"flex-auto h-8 px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none\" placeholder=\"Gare de départ\" required>\n" +
+            "   <input value='Paris-Gare-de-Lyon' type=\"text\" id=\"dep_station\" class=\"flex-auto h-8 px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none\" placeholder=\"Gare de départ\" required>\n" +
             "</div>"+
             "<div class=\"items-center flex\" style='margin-bottom: 2em'>\n" +
             "   <label for='arr_station' class=\"w-96 px-3 leading-tight text-gray-700\">Gare d'arrivé</label>" +
-            "   <input type=\"text\" id=\"arr_station\" class=\"flex-auto h-8 px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none\" placeholder=\"Gare de d'arrivé\" required>\n" +
+            "   <input value='Marseille-St-Charles' type=\"text\" id=\"arr_station\" class=\"flex-auto h-8 px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none\" placeholder=\"Gare de d'arrivé\" required>\n" +
             "</div>\n"
         btn_send.value = "trajet";
     }
@@ -47,20 +47,19 @@ btn_send.addEventListener('click', async () =>{
 
         let jsonSend_gare = {"garedep":gare_dep, "garearr":gare_arr};
         let uic = await sendJson("/trajet/gare/search", jsonSend_gare);
-        console.log(uic)
-        /*
-        if(uic !== null){
-            let train_journey_send = findTrainStation(uic.uic_dep, uic.uic_arr);
-            let rep = await sendJson(`/trajet/id`, train_journey_send)
+        if(uic !== null && uic.success == true){
+            let id_gare = uic.uic
+            let train_journey_send = await findTrainStation(id_gare.garedep, id_gare.garearr);
+            console.log(train_journey_send)
+            /*let rep = await sendJson(`/trajet/id`, train_journey_send)
             if(rep !== {}){
                 console.log(rep)
             }else{
 
-            }
+            }*/
         }else {
-
+            // A voir
         }
-        */
     }else if(btn_send.value == 'train'){
         const id_train = document.querySelector('#id_train').value
         let train_journey_json = await findTrainJourney(id_train)
@@ -71,7 +70,6 @@ btn_send.addEventListener('click', async () =>{
 
 document.addEventListener('DOMContentLoaded', ()=>{
     all_Gare = getGare();
-    console.log(all_Gare)
     renderForm('trajet')
 })
 
@@ -91,13 +89,14 @@ const findTrainJourney = async id => {
     let month = today.getMonth()+1
     let day = today.getDate();
     let date = today.getFullYear()+'-'+(month<10?'0'+month : month)+'-'+ (day < 10 ? '0'+day : day);
-    console.log("Date : ", date)
     try {
-        let url = `https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/vehicle_journey:SNCF:${date}:${id}:1187:LongDistanceTrain`
+        //let url = `https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/vehicle_journey:SNCF:${date}:${id}:1187:LongDistanceTrain`
+        let url = `https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/vehicle_journey:SNCF:2022-03-26:${id}:1187:LongDistanceTrain`
         var response = await fetch(url, options_fetch)
         var trains = await response.json();
         if(trains.hasOwnProperty("error")){
-            response = await fetch(`https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/vehicle_journey:SNCF:${date}:${id}:1187:Train`, options_fetch);
+            //response = await fetch(`https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/vehicle_journey:SNCF:${date}:${id}:1187:Train`, options_fetch);
+            response = await fetch(`https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/vehicle_journey:SNCF:2022-03-26:${id}:1187:Train`, options_fetch);
             trains = await response.json();
             if(trains.hasOwnProperty("error")){
                 trains = {};
@@ -117,26 +116,23 @@ const findTrainJourney = async id => {
 }
 
 const findTrainStation = async (departure, arrival) => {
+    console.log(departure, arrival)
     try {
         var response = await fetch(`https://api.sncf.com/v1/coverage/sncf/stop_points/stop_point:SNCF:${departure}:Train/departures`, options_fetch);
         var trains = await response.json();
-        if(trains.hasOwnProperty("error")){
-            trains = {};
+        if(!trains.hasOwnProperty("error")) {
+            var res = trains["departures"].filter(dep => dep["route"]["direction"]["stop_area"]["codes"][1]["value"] === arrival)
+            console.log("res ligne 122 : ",res)
+            if (res.length != 0) {
+                res = res[0]["links"].filter(lk=>lk["type"] === "vehicle_journey");
+                res = res[0]["id"];
+                res = res.split(':');
+                let journey = await findTrainJourney(res[3]);
+                console.log(journey)
+                return {"id": res[3], "val": journey};
+            }
         }
-        else{
-            var res = trains["departures"].filter(dep=>dep["route"]["direction"]["stop_area"]["codes"][1]["value"] === arrival)
-            res = res[0]["links"].filter(lk=>lk["type"] === "vehicle_journey");
-            res = res[0]["id"];
-            res = res.split(':');
-            return {"id":res[3],"val":findTrainJourney(res[3])};
-        }
-        
-        trains = trains['vehicle_journeys']
-        trains[0]['size'] = trains[0]['id'].split(':')[5]
-        delete trains[0]['journey_pattern']
-        delete trains[0]['headsign']
-        delete trains[0]['trip']
-        return trains[0];
+        return {};
     }catch (err) {
         console.log("Can't find the train", err)
         return {};
@@ -173,7 +169,6 @@ const sendJson = async (url, jsonData) => {
         body: JSON.stringify(jsonData)
     });
     const content =  await rep.json();
-    console.log(content)
     return content
 }
 
@@ -185,5 +180,5 @@ const getGare = async() =>{
         }
     });
     const content =  await rep.json();
-    console.log(content)
+
 }

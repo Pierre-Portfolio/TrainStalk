@@ -22,7 +22,7 @@ var prefix = "PREFIX owl:http://www.w3.org/2002/07/owl#\n" +
     "PREFIX rdf:http://www.w3.org/1999/02/22-rdf-syntax-ns#\n" +
     "PREFIX xml:http://www.w3.org/XML/1998/namespace\n" +
     "PREFIX xsd:http://www.w3.org/2001/XMLSchema#\n" +
-    "PREFIX rdfshttp://www.w3.org/2000/01/rdf-schema#";
+    "PREFIX rdfs:http://www.w3.org/2000/01/rdf-schema#";
 
 let q = `SELECT ?UIC WHERE`+
     `{ {?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7NomGare> "Mareil-sur-Mauldre"} UNION`+
