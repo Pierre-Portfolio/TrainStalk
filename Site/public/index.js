@@ -9,8 +9,8 @@ const btn_send = document.querySelector('#btn_send')
 function renderForm(type) {
     let txt = ''
     if(type == "train"){
-        txt = "<div class=\"flex items-center p-6\">\n" +
-            "<label for='id_train'><h3>N° de train</h3></label><input type=\"text\" id=\"id_train\" class=\"h-8 px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none ml-96 focus:outline-none\" placeholder=\"Numero De Train\" required>\n" +
+        txt = "<div class=\"flex items-center justify-between p-6\">\n" +
+            "<label for='id_train'><h3>N° de train</h3></label><input type=\"text\" id=\"id_train\" class=\"h-8 px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none\" placeholder=\"Numero De Train\" required>\n" +
             "</div>\n"
         btn_send.value = "train";
 
