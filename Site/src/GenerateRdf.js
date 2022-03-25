@@ -13,39 +13,42 @@ export const GenerateRdfDynamic = async (data_context, data_contains) => {
 };
 
 // a faire pour les 2 lien dynamique donc recup leur json respectif
-/*
+
 const rdfGare = await GenerateRdfDynamic('./src/Onthologies/Data/Gare/context.json','./src/Onthologies/Data/Gare/data.json')
-//console.log(rdfGare.slice(0,10000))
-fs.writeFileSync('rdfGare.rdf', rdfGare)
+//console.log(rdfGare)
 
-const td3 = fs.readFileSync('TD 3.owl', 'utf-8');
-console.log(td3)
+import * as rdfstore from 'rdfstore'
 
-
-const query = `
-PREFIX owl: <http://www.w3.org/2002/07/owl#>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX xml: <http://www.w3.org/XML/1998/namespace>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-
-SELECT ?x ?y ?z
-WHERE {?x ?y ?z} 
-LIMIT 100
-`
-
-
-d3.sparql(td3, query).then(function(data) {
-  console.log(data)
+var store = new Store({name:"test", overwrite:true}, function (err,store){
+    store.load('text/n3', rdfGare, function (s,d){
+        store.execute("SELECT ?subject ?predicate ?object WHERE {?subject ?predicate ?object} LIMIT 1", function (success, results){
+            console.log(success, results)
+        });
+    });
 })
 
-//pour les requetes voir ce tuto
-//https://zazuko.com/get-started/developers/
-//https://www.npmjs.com/package/sparql-http-client
-//https://callidon.github.io/sparql-engine/
 
 /*
-SELECT ?subject ?predicate ?object
-WHERE {?subject ?predicate ?object} 
-LIMIT 100
-*/
+rdfstore.create(function(err, store) {
+    store.execute('LOAD <http://dbpedia.org/resource/Tim_Berners-Lee> INTO GRAPH <http://example.org/people>', function() {
+        store.setPrefix('dbp', 'http://dbpedia.org/resource/');
+    });
+    store.load("")
+    console.log(store)
+
+});*/
+
+/*
+var rdfstore = require('rdfstore')
+, fs = require('fs');
+
+rdfstore.create(function(store){
+  var rdf = fs.readFileSync('/var/foo/bar.ttl').toString();
+  store.load('text/turtle', rdf, function(s,d){
+    console.log(s,d);
+    store.execute("SELECT * WHERE { ?s ?p ?o } LIMIT 10", function(success, results){
+      console.log(success, results);
+    });
+  });
+});
+ */

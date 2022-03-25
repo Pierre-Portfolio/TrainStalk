@@ -19,6 +19,7 @@
     "jsonld-streaming-serializer": "^1.3.0",
     "node-fetch": "^3.2.3",
     "rdf-parse": "^2.0.0",
+    "rdfstore": "^0.9.17",
     "sparql-engine": "^0.8.2",
     "sparql-http-client": "^2.4.0"
   },

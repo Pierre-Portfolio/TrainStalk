@@ -143,3 +143,14 @@ const sendJson = async (url, jsonData) => {
     const content =  await rep.json();
     console.log(content)
 }
+
+const getGare = async() =>{
+    const rep = await fetch("/gare", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    const content =  await rep.json();
+    console.log(content)
+}
