@@ -22,3 +22,10 @@ const get_coord = (gareName) => {
     `{?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Ville> ${gareName} }.`+
     `?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Coordinates> ?coord}`;
 }
+
+const meteo = (city) => {
+    return `SELECT ?weather ?temp WHERE`+
+    `{?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Weather> ${city}}.` +
+    `{?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Temperature> ?weather}.` +
+    `{?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Weather> ?temp}.`;
+}
