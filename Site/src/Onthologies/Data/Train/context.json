@@ -37,7 +37,8 @@
       "departure_time": "Depart",
       "beginning_date": null,
       "days": null,
-      "id": "IDTrajet"
+      "id": "IDTrajet",
+      "size": "Size"
      },
      "@type": "ItemList",
      "itemListElement":

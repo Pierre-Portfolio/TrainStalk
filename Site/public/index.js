@@ -90,7 +90,13 @@ const findTrainJourney = async id => {
                 trains = {};
             }
         }
-        return trains;
+
+        trains = trains['vehicle_journeys']
+        trains[0]['size'] = trains[0]['id'].split(':')[5]
+        delete trains[0]['journey_pattern']
+        delete trains[0]['headsign']
+        delete trains[0]['trip']
+        return trains[0];
     }catch (err) {
         console.log("Can't find the train", err)
         return {};
@@ -111,7 +117,13 @@ const findTrainStation = async (departure, arrival) => {
             res = res.split(':');
             return findTrainJourney(res[3]);
         }
-        return trains;
+        
+        trains = trains['vehicle_journeys']
+        trains[0]['size'] = trains[0]['id'].split(':')[5]
+        delete trains[0]['journey_pattern']
+        delete trains[0]['headsign']
+        delete trains[0]['trip']
+        return trains[0];
     }catch (err) {
         console.log("Can't find the train", err)
         return {};
