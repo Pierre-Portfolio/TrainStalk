@@ -37,7 +37,7 @@ app.post('/trajet/gare/search', (request, response) =>
                             resp['garedep'] = res.value;
                         }else{
                             store.execute(query_uicFromGare(gare_dep.toUpperCase()), function(err, res) {
-                                console.log(res)
+                                //console.log(res)
                                 if(res.length !== 0) {
                                     resp['garedep'] = res.value;
                                 }else{
@@ -46,14 +46,15 @@ app.post('/trajet/gare/search', (request, response) =>
                             });
                         }
                     });
-                    /*store.execute(query_uicFromGare(gare_arr), function(err, res){
+
+                    store.execute(query_uicFromGare(gare_arr), function(err, res){
                         console.log(res)
                         if(res.length !== 0){
                             resp['garearr'] = res.value;
                         }else{
                             response.send({"success":false})
                         }
-                    });*/
+                    });
                 });
             });
         }catch (e) {
@@ -74,7 +75,7 @@ app.post('/trajet/id', (request, response) =>
         try {
             const module = await import('./src/GenerateRdf.js');
             const rdfTrajet = await module.GenerateRdfDynamic("./src/Onthologies/Data/Train/context.json","./src/Onthologies/Data/Train/trajet-data.json")
-            console.log(rdfTrajet)
+            //console.log(rdfTrajet)
             let store = new rdfstore.Store(function (err, store){
                 store.load('text/n3', rdfTrajet, (s,d)=>{
                     store.execute(ASK_getJourney(id), function(err, res){
@@ -109,9 +110,9 @@ app.post('/gare', (request, response) =>
             let store = new rdfstore.Store(function (err, store){
                 store.load('text/n3', rdfGare, (s,d)=>{
                     store.execute(query_allGareName, function(err, res){
-                        console.log(res)
-                        if(res.length !==  0){
-                            response.send({"success":true})
+                        let val_ret = res.map(x=>x.name.value);
+                        if(val_ret.length !==  0){
+                            response.send({"All_train":val_ret,"success":true})
                         }else{
                             response.send({"success":false})
                         }
