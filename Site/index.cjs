@@ -105,8 +105,7 @@ app.post('/gare', (request, response) =>
     console.log("Debut /gare");
     (async () =>{
         try{
-            const module = await import('./src/GenerateRdf.js');
-            const rdfGare = await module.GenerateRdfDynamic("./src/Onthologies/Data/Gare/context.json","./src/Onthologies/Data/Gare/data.json");
+            const rdfGare = fs.readFileSync('./src/Onthologies/Data/Gare/gare-data.nq').toString();
             let store = new rdfstore.Store(function (err, store){
                 store.load('text/n3', rdfGare, (s,d)=>{
                     store.execute(query_allGareName, function(err, res){
