@@ -177,14 +177,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Image -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Image">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Gare"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Meteo -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Meteo"/>
@@ -223,14 +215,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Rating -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Rating">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Gare"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Size -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Size">
@@ -249,17 +233,13 @@
 
     <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#TER -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#TER">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Type"/>
-    </owl:Class>
+    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#TER"/>
     
 
 
     <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#TGV -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#TGV">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Type"/>
-    </owl:Class>
+    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#TGV"/>
     
 
 
@@ -284,6 +264,22 @@
     
 
 
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#TrainLatitude -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#TrainLatitude">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Train"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#TrainLongitude -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#TrainLongitude">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Train"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Trajet -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Trajet">
@@ -293,14 +289,6 @@
                 <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Train"/>
             </owl:Restriction>
         </owl:equivalentClass>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Type -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Type">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Train"/>
     </owl:Class>
     
 
@@ -317,14 +305,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Wind">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Meteo"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#number -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#number">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7#Train"/>
     </owl:Class>
 </rdf:RDF>
 

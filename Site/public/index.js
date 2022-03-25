@@ -102,7 +102,13 @@ const findTrainJourney = async id => {
                 trains = {};
             }
         }
-        return trains;
+
+        trains = trains['vehicle_journeys']
+        trains[0]['size'] = trains[0]['id'].split(':')[5]
+        delete trains[0]['journey_pattern']
+        delete trains[0]['headsign']
+        delete trains[0]['trip']
+        return trains[0];
     }catch (err) {
         console.log("Can't find the train", err)
         return {};
@@ -123,7 +129,13 @@ const findTrainStation = async (departure, arrival) => {
             res = res.split(':');
             return {"id":res[3],"val":findTrainJourney(res[3])};
         }
-        return trains;
+        
+        trains = trains['vehicle_journeys']
+        trains[0]['size'] = trains[0]['id'].split(':')[5]
+        delete trains[0]['journey_pattern']
+        delete trains[0]['headsign']
+        delete trains[0]['trip']
+        return trains[0];
     }catch (err) {
         console.log("Can't find the train", err)
         return {};
@@ -133,10 +145,17 @@ const findTrainStation = async (departure, arrival) => {
 const findweather = async (latitude, longitude) => {
     try {
         const response = await fetch(
-            `https://www.infoclimat.fr/public-api/gfs/json?_ll=${latitude},${longitude}${config.meteo}`
+            `https://www.infoclimat.fr/public-api/gfs/json?_ll=${latitude},${longitude}&_auth=BhxSRQF%2FVXcFKAE2DnhXfgBoDjtbLQUiUCwKaVw5Uy4EbwRlBmYAZgdpVSgDLFBmU34BYg02UmIBalUtCnhTMgZsUj4BalUyBWoBZA4hV3wALg5vW3sFIlAyCmpcN1MuBGYEZAZiAHwHalU3AztQelNnAWMNLVJ1AWNVNApmUzgGZlI0AWtVMAVoAWYOIVd8ADUObltjBThQYAptXDZTZAQzBDEGMwBnB21VNgMtUGNTaQFkDTVSbQFgVTQKb1MvBnpSTwERVSoFKgEhDmtXJQAuDjtbOgVp&_c=3523bcf3629d763891b8d24665da6a4c`
         );
-        const data = await response.json();
-        //Voir quel modif a faire (sur les noms des columns "2m" avec du regex)
+        let data = await response.json();
+        let myJson = JSON.stringify(data);
+        myJson = myJson.replaceAll('re":{"2m', 're":{"temperature_2m')
+        myJson = myJson.replaceAll('te":{"2m', 'te":{"humidite_2m')
+
+        myJson = myJson.replaceAll('en":{"10m', 'en":{"vent_moyen_10m')
+        myJson = myJson.replaceAll('es":{"10m', 'es":{"vent_rafales_10m')
+        myJson = myJson.replaceAll('on":{"10m', 'on":{"vent_direction_10m')
+        data = JSON.parse(myJson);
         return data
     }catch (err) {
         console.log("Can't find the weather", err)
