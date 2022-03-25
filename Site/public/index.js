@@ -5,6 +5,8 @@ const btn_trajet = document.querySelector('#trajet-btn');
 const btn_train = document.querySelector('#train-btn');
 const section_form = document.querySelector('#section_form');
 const btn_send = document.querySelector('#btn_send');
+const next_train = document.querySelector('#next_train');
+const previous_train = document.querySelector('#previous_train');
 
 let inpuGareDepart = null;
 let inpuGareArrive = null;
@@ -12,6 +14,9 @@ let loading = true;
 
 console.log(inpuGareDepart)
 let all_Gare = [];
+let currentJourney = null;
+let currentJourneyPosition = 0;
+let currentStation = null;
 function renderForm(type) {
     let txt = ''
     if(type == "train"){
@@ -68,14 +73,54 @@ function renderForm(type) {
     loading = false;
 }
 
+function renderDisplayJourney(){
+    console.log(currentStation)
+    if(currentStation == null){
+        let txt = `<label><i className="fa-solid fa-train"></i> Nom Train : <a id="NameT"
+                                                                              property="foaf:lastName"></a></label>
+        <label><i className="fa-solid fa-place-of-worship"></i> Gare Départ : <a id="GareDT"
+                                                                                 property="foaf:lastName"></a></label>
+        <label><i className="fa-solid fa-place-of-worship"></i> Gare Arrivé : <a id="GareAr"
+                                                                                 property="foaf:lastName"></a></label>
+        <label><i className="fa-solid fa-hourglass-start"></i> Heure Départ : <a id="HeureDT"
+                                                                                 property="foaf:lastName"></a></label>
+        <label><i className="fa-solid fa-hourglass-end"></i> Heure Arrivé : <a id="NameART"
+                                                                               property="foaf:lastName"></a></label>`
+        document.querySelector('#section_show').innerHTML = txt;
+    }else{
+        let txt = `<label><i class="fa-solid fa-train"></i> Nom Train : <a id="NameT" property="foaf:lastName"></a></label>
+                   <label><i class="fa-solid fa-place-of-worship"></i> Nom de station : ${currentStation['station_name ']} <a id="GareDT" property="foaf:lastName"></a></label>
+                   <label><i class="fa-solid fa-hourglass-start"></i> Heure Départ : ${currentStation["arrival "]} <a id="HeureDT" property="foaf:lastName"></a></label>
+                   <label><i class="fa-solid fa-hourglass-end"></i> Heure Arrivé : ${currentStation["departure "]}<a id="NameART" property="foaf:lastName"></a></label>`
+
+        document.querySelector('#section_show').innerHTML = txt;
+    }
+}
+
 btn_trajet.addEventListener('click', ()=>{
     renderForm("trajet")
 })
-/*
-btn_gare.addEventListener('click', ()=>{
-    console.log("Btn gare click")
+
+next_train.addEventListener('click', ()=>{
+    if (currentJourneyPosition >= currentJourney.length-1){
+        currentJourneyPosition = 0;
+    }else{
+        currentJourneyPosition +=1
+    }
+    currentStation = currentJourney[currentJourneyPosition];
+    renderDisplayJourney();
 })
-*/
+
+previous_train.addEventListener('click', ()=>{
+    if (currentJourneyPosition <= 0){
+        currentJourneyPosition = currentJourney.length-1;
+    }else{
+        currentJourneyPosition -=1
+    }
+    currentStation = currentJourney[currentJourneyPosition];
+    renderDisplayJourney();
+})
+
 btn_train.addEventListener('click', ()=>{
     renderForm("train")
 })
@@ -92,26 +137,34 @@ btn_send.addEventListener('click', async () =>{
             let train_journey_send = await findTrainStation(id_gare.garedep, id_gare.garearr);
 
             if(Object.keys(train_journey_send).length !== 0){
-                let rep = await sendJson(`/trajet/id`, train_journey_send)
+                let rep = await sendJson(`/trajet/id`, train_journey_send);
+                currentJourney = rep.values;
+                currentStation = currentJourney[0]
             }else{
                 console.log("Not found");
-                // Render trajet error
+                currentJourney = null;
+                currentStation = null;
             }
         }else {
-            // A voir
+            currentJourney = null;
+            currentStation = null;
         }
     }else if(btn_send.value == 'train'){
         const id_train = document.querySelector('#id_train').value
         let train_journey_json = await findTrainJourney(id_train)
         let jsonSend = {id:id_train, val : train_journey_json};
         let rep = await sendJson(`/trajet/id`, jsonSend)
+        currentJourney = rep.values;
+        currentStation = currentJourney[0]
     }
-
-    document.getElementById("res_hidden").classList.remove("hidden");
+    //document.getElementById("res_hidden").classList.remove("hidden");
+    renderDisplayJourney();
 })
 
 document.addEventListener('DOMContentLoaded', async ()=>{
-    renderForm('trajet')
+    renderForm('trajet');
+    renderDisplayJourney();
+
     all_Gare = await getGare();
     all_Gare = all_Gare['All_Gare'];
 })
