@@ -17,8 +17,8 @@ const getJourney = (idtrain) => {
 }
 
 const get_coord = (gareName) => {
-    return `SELECT ?cood WHERE`+
-        `{ {?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7NomGare> ${gareName}} UNION`+
-        `{?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Ville> ${gareName} }.`+
-        `?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Coordinates> ?coord}`;
+    return `CONSTRUCT {${gareName} <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7hasCoordinates> ?coord} WHERE`+
+    `{ {?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7NomGare> ${gareName}} UNION`+
+    `{?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Ville> ${gareName} }.`+
+    `?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Coordinates> ?coord}`;
 }
