@@ -30,29 +30,47 @@ app.post('/trajet/gare/search', (request, response) =>
             const rdfGare = await module.GenerateRdfDynamic("./src/Onthologies/Data/Gare/context.json","./src/Onthologies/Data/Gare/data.json");
             let store = new rdfstore.Store(function (err, store){
                 store.load('text/n3', rdfGare, (s,d)=>{
-                    console.log("S, D:", s,d);
                     store.execute(query_uicFromGare(gare_dep), function(err, res){
-                        console.log(res)
                         if(res.length !== 0){
-                            resp['garedep'] = res.value;
+                            resp['garedep'] = res[0].UIC.value;
+                            store.execute(query_uicFromGare(gare_arr), function(err, res){
+                                if(res.length !== 0){
+                                    resp['garearr'] = res[0].UIC.value;
+                                    response.send({"uic":resp,"success":true})
+                                }else{
+                                    store.execute(query_uicFromGare(gare_arr.toUpperCase()), function(err, res){
+                                        if(res.length !== 0){
+                                            resp['garearr'] = res[0].UIC.value;
+                                            response.send({"uic":resp,"success":true})
+                                        }else{
+                                            response.send({"success":false})
+                                        }
+                                    });
+                                }
+                            });
                         }else{
                             store.execute(query_uicFromGare(gare_dep.toUpperCase()), function(err, res) {
-                                //console.log(res)
                                 if(res.length !== 0) {
-                                    resp['garedep'] = res.value;
+                                    resp['garedep'] = res[0].UIC.value;
+                                    store.execute(query_uicFromGare(gare_arr), function(err, res){
+                                        if(res.length !== 0){
+                                            resp['garearr'] = res[0].UIC.value;
+                                            response.send({"uic":resp,"success":true})
+                                        }else{
+                                            store.execute(query_uicFromGare(gare_arr.toUpperCase()), function(err, res){
+                                                if(res.length !== 0){
+                                                    resp['garearr'] = res[0].UIC.value;
+                                                    response.send({"uic":resp,"success":true})
+                                                }else{
+                                                    response.send({"success":false})
+                                                }
+                                            });
+                                        }
+                                    });
                                 }else{
                                     response.send({"success": false})
                                 }
                             });
-                        }
-                    });
-
-                    store.execute(query_uicFromGare(gare_arr), function(err, res){
-                        console.log(res)
-                        if(res.length !== 0){
-                            resp['garearr'] = res.value;
-                        }else{
-                            response.send({"success":false})
                         }
                     });
                 });
@@ -61,7 +79,6 @@ app.post('/trajet/gare/search', (request, response) =>
             console.log(e);
             response.send({"success":false})
         }
-        console.log("== End async ==")
     })();
 });
 
@@ -75,7 +92,7 @@ app.post('/trajet/id', (request, response) =>
         try {
             const module = await import('./src/GenerateRdf.js');
             const rdfTrajet = await module.GenerateRdfDynamic("./src/Onthologies/Data/Train/context.json","./src/Onthologies/Data/Train/trajet-data.json")
-            //console.log(rdfTrajet)
+            console.log(rdfTrajet)
             let store = new rdfstore.Store(function (err, store){
                 store.load('text/n3', rdfTrajet, (s,d)=>{
                     store.execute(ASK_getJourney(id), function(err, res){
@@ -105,8 +122,7 @@ app.post('/gare', (request, response) =>
     console.log("Debut /gare");
     (async () =>{
         try{
-            const module = await import('./src/GenerateRdf.js');
-            const rdfGare = await module.GenerateRdfDynamic("./src/Onthologies/Data/Gare/context.json","./src/Onthologies/Data/Gare/data.json");
+            const rdfGare = fs.readFileSync('./src/Onthologies/Data/Gare/gare-data.nq').toString();
             let store = new rdfstore.Store(function (err, store){
                 store.load('text/n3', rdfGare, (s,d)=>{
                     store.execute(query_allGareName, function(err, res){
