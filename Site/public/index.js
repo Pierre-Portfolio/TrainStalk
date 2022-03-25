@@ -106,6 +106,8 @@ btn_send.addEventListener('click', async () =>{
         let jsonSend = {id:id_train, val : train_journey_json};
         let rep = await sendJson(`/trajet/id`, jsonSend)
     }
+
+    document.getElementById("res_hidden").classList.remove("hidden");
 })
 
 document.addEventListener('DOMContentLoaded', async ()=>{
