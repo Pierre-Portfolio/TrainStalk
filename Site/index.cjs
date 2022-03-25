@@ -21,7 +21,13 @@ app.options('*', cors());
 /*recup trajet gare arrive et depart*/
 app.post('/trajet/gare/search', (request, response) =>
 {
-
+    var store = new Store({name:"test", overwrite:true}, function (err,store){
+        store.load('text/n3', rdfGare, function (s,d){
+            store.execute(q, function (success, results){
+                console.log(results)
+            });
+        });
+    })
 });
 
 /*recup trajet nb train*/

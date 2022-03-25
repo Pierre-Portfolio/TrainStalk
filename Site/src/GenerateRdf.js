@@ -26,12 +26,6 @@ var prefix = "PREFIX owl:http://www.w3.org/2002/07/owl#\n" +
     "PREFIX xsd:http://www.w3.org/2001/XMLSchema#\n" +
     "PREFIX rdfshttp://www.w3.org/2000/01/rdf-schema#";
 
-var store = new Store({name:"test", overwrite:true}, function (err,store){
-    store.load('text/n3', rdfGare, function (s,d){
-        store.execute(q, function (success, results){
-            console.log(results)
-        });
-    });
-})
+
 
 //fs.writeFileSync('rdfGare.rdf', rdfGare)
