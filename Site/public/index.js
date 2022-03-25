@@ -22,21 +22,12 @@ function renderForm(type) {
     }else if(type == "trajet"){
         txt="<div class=\"items-center flex\" style='margin-bottom: 2em'>" +
             "   <label for='dep_station' class=\"w-96 px-3 leading-tight text-gray-700\">Gare de départ</label>" +
-<<<<<<< HEAD
             "   <input list=\"data1\" id=\"dep_station\" class=\"flex-auto h-8 px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none\" placeholder=\"Gare de départ\" required>\n" +
             "<datalist id=\"data1\"></div></div>"+
             "<div class=\"items-center flex\" style='margin-bottom: 2em'>\n" +
             "   <label for='arr_station' class=\"w-96 px-3 leading-tight text-gray-700\">Gare d'arrivé</label>" +
             "   <input list=\"data2\" type=\"text\" id=\"arr_station\" class=\"flex-auto h-8 px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none\" placeholder=\"Gare de d'arrivé\" required>\n" +
             "<datalist id=\"data2\"></div></div>\n"
-=======
-            "   <input value='Abbeville' type=\"text\" id=\"dep_station\" class=\"flex-auto h-8 px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none\" placeholder=\"Gare de départ\" required>\n" +
-            "</div>"+
-            "<div class=\"items-center flex\" style='margin-bottom: 2em'>\n" +
-            "   <label for='arr_station' class=\"w-96 px-3 leading-tight text-gray-700\">Gare d'arrivé</label>" +
-            "   <input value='Amiens' type=\"text\" id=\"arr_station\" class=\"flex-auto h-8 px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none\" placeholder=\"Gare de d'arrivé\" required>\n" +
-            "</div>\n"
->>>>>>> 35c221d6c3316f0edffeda5c44994e8c1b4e1bca
         btn_send.value = "trajet";
     }
     section_form.innerHTML = txt;
@@ -117,12 +108,7 @@ btn_send.addEventListener('click', async () =>{
     }
 })
 
-<<<<<<< HEAD
 document.addEventListener('DOMContentLoaded', async ()=>{
-=======
-document.addEventListener('DOMContentLoaded', ()=>{
-    all_Gare = getGare();
->>>>>>> 35c221d6c3316f0edffeda5c44994e8c1b4e1bca
     renderForm('trajet')
     all_Gare = await getGare();
     all_Gare = all_Gare['All_Gare'];
@@ -234,8 +220,5 @@ const getGare = async() =>{
         }
     });
     const content =  await rep.json();
-<<<<<<< HEAD
     return content
-=======
->>>>>>> 35c221d6c3316f0edffeda5c44994e8c1b4e1bca
 }
