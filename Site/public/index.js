@@ -1,11 +1,11 @@
 'use strict';
 
-const btn_trajet = document.querySelector('#trajet-btn')
-//const btn_gare = document.querySelector('#gare-btn')
-const btn_train = document.querySelector('#train-btn')
-const section_form = document.querySelector('#section_form')
-const btn_send = document.querySelector('#btn_send')
-
+const btn_trajet = document.querySelector('#trajet-btn');
+//const btn_gare = document.querySelector('#gare-btn');
+const btn_train = document.querySelector('#train-btn');
+const section_form = document.querySelector('#section_form');
+const btn_send = document.querySelector('#btn_send');
+let all_Gare = [];
 function renderForm(type) {
     let txt = ''
     if(type == "train"){
@@ -70,7 +70,8 @@ btn_send.addEventListener('click', async () =>{
 })
 
 document.addEventListener('DOMContentLoaded', ()=>{
-    let allGare = getGare();
+    all_Gare = getGare();
+    console.log(all_Gare)
     renderForm('trajet')
 })
 
