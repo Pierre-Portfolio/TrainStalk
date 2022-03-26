@@ -98,12 +98,9 @@ app.post('/trajet/id', (request, response) =>
                         if (res === true){
                             store.execute(getJourney(id),function (err,res) {
                                 if(res && res.length !== 0){
-                                    console.log(res)
                                     let val_res = res.map(x => {
                                         return { "station_name ": x.stop_name.value, "arrival ": x.arrival.value, "departure ": x.depart.value, "lat": x.lat.value, "long": x.long.value, "size": x.size.value}
                                     });
-                                    console.log("JE SUIS ICI")
-                                    console.log(val_res)
                                     response.send({"values":val_res,"success":true})
                                 }else{
                                     response.send({"success":false})
@@ -191,8 +188,8 @@ const getJourney = (idtrain) => {
 ?z <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Name> ?stop_name.
 ?z <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7coord> ?a.
 ?a <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7TrainLatitude> ?lat.
-?a <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7TrainLatitude> ?long .
-?b <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Size> ?size
+?a <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7TrainLongitude> ?long .
+?c <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Size> ?size
 }`
 }
 

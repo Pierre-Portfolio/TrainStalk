@@ -11,7 +11,6 @@ const previous_train = document.querySelector('#previous_train');
 let inpuGareDepart = null;
 let inpuGareArrive = null;
 
-console.log(inpuGareDepart)
 let all_Gare = [];
 let currentJourney = null;
 let currentJourneyPosition = 0;
@@ -120,6 +119,9 @@ function renderDisplayJourney(){
                    <label><i class="fa-solid fa-cloud-rain"></i> Pluie : <a id="Pluie" property="weather:Rain"> - </a></label>`
 
         document.querySelector('#section_show').innerHTML = txt;
+
+        console.log(currentStation["long"])
+        console.log(currentStation["lat"])
     }
 }
 
@@ -257,7 +259,6 @@ const findTrainJourney = async id => {
 }
 
 const findTrainStation = async (departure, arrival) => {
-    console.log(departure, arrival)
     try {
         //var response = await fetch(`https://api.sncf.com/v1/coverage/sncf/stop_points/stop_point:SNCF:${departure}:Train/departures`, options_fetch);
         let response = await fetch(`https://api.sncf.com/v1/coverage/sncf/stop_points/stop_point:SNCF:87317362:Train/departures`, options_fetch);
