@@ -58,7 +58,7 @@ function renderForm(type) {
             option.value = res;
 
             var attr = document.createAttribute("property");
-            attr.value = "Station:NomGare";
+            attr.value = "station:NomGare";
             option.setAttributeNode(attr);
             
             parent.appendChild(option);  
