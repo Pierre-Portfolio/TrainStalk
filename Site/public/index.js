@@ -101,10 +101,17 @@ function renderDisplayJourney(){
     }else{
         let heureA = currentStation["arrival "].slice(0, 2) + ' : ' + currentStation["arrival "].slice(2, 4) + ' : ' + currentStation["arrival "].slice(4, 6)
         let heureD = currentStation["departure "].slice(0, 2) + ' : ' + currentStation["departure "].slice(2, 4) + ' : ' + currentStation["departure "].slice(4, 6)
+        let sizeT = currentStation['size'].match(/[A-Z][a-z]+/g);
+        if (sizeT.length == 3){
+            sizeT = sizeT[2] + " " + sizeT[0] + " " + sizeT[1]
+        }
+        else {
+            sizeT = currentStation['size']
+        }
         let txt = `<label><i class="fa-solid fa-place-of-worship"></i> Nom de station : <a id="GareDT" property="station:NomGare"> ${currentStation['station_name ']} </a></label>
                    <label><i class="fa-solid fa-hourglass-start"></i> Heure Départ : <a id="HeureDT" property="hour:Hours"> ${heureA} </a></label>
                    <label><i class="fa-solid fa-hourglass-end"></i> Heure Arrivé : <a id="NameART" property="hour:Hours"> ${heureD} </a></label>
-                   <label><i class="fa-solid fa-vector-square"></i> Size : <a id="TypeT" property="train:Size"> ${currentStation['size']} </a></label>
+                   <label><i class="fa-solid fa-vector-square"></i> Size : <a id="TypeT" property="train:Size"> ${sizeT} </a></label>
                    <label><i class="fa-solid fa-temperature-half"></i> Temperature : <a id="Temperature" property="weather:Temperature"> - </a></label>
                    <label><i class="fa-solid fa-wind"></i> Vent : <a id="Vent" property="weather:Wind"> - </a></label>
                    <label><i class="fa-solid fa-cloud-rain"></i> Pluie : <a id="Pluie" property="weather:Rain"> - </a></label>`
