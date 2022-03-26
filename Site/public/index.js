@@ -88,7 +88,7 @@ function renderForm(type) {
     }
 }
 
-function renderDisplayJourney(){
+async function renderDisplayJourney(){
     console.log(currentStation)
     if(currentStation == null){
         let txt = `Aucun Résultat Trouvé`
@@ -113,8 +113,10 @@ function renderDisplayJourney(){
 
         document.querySelector('#section_show').innerHTML = txt;
 
-        console.log(currentStation["long"])
-        console.log(currentStation["lat"])
+        let weatherdata = await findweather(currentStation["lat"], currentStation["long"])
+        console.log("METEO")
+        console.log(weatherdata)
+        //sendJson(,weatherdata)
     }
 }
 
