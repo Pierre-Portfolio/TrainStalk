@@ -10,7 +10,6 @@ const previous_train = document.querySelector('#previous_train');
 
 let inpuGareDepart = null;
 let inpuGareArrive = null;
-let loading = true;
 
 console.log(inpuGareDepart)
 let all_Gare = [];
@@ -18,9 +17,16 @@ let currentJourney = null;
 let currentJourneyPosition = 0;
 let currentStation = null;
 function renderForm(type) {
+    let txterror = `<div id="AlertError" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative hidden" role="alert">
+            <strong class="font-bold" > Une Erreur est survenue ! </strong >
+                <span class="block sm:inline">Veulliez remplir le formulaire</span>
+                <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                    <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" /></svg>
+                </span>
+            </div >`
     let txt = ''
     if(type == "train"){
-        txt = "<div class=\"flex items-center justify-between p-6\">\n" +
+        txt = txterror + "<div class=\"flex items-center justify-between p-6\">\n" +
             "<label for='id_train'><h3>N° de train</h3></label><input type=\"text\" id=\"id_train\" class=\"h-8 px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none\" placeholder=\"Numero De Train\" required>\n" +
             "</div>\n"
         btn_send.value = "train";
@@ -39,46 +45,51 @@ function renderForm(type) {
     inpuGareDepart = document.querySelector('#dep_station');
     inpuGareArrive = document.querySelector('#arr_station');
 
-    if (loading) {
-        inpuGareDepart.addEventListener('keyup', (event) => {
-            let parent =  document.getElementById("data1")
-            while (parent.firstChild) {
-                parent.removeChild(parent.firstChild);
-            }
+    inpuGareDepart.addEventListener('keyup', (event) => {
+        let parent =  document.getElementById("data1")
+        while (parent.firstChild) {
+            parent.removeChild(parent.firstChild);
+        }
+        console.log("Saisie Utilisateur")
+        let ListGare = all_Gare.filter(element => element.includes(inpuGareDepart.value))
+        for (let j = 0; j < 5; j++) {
+            let res = ListGare[j]
+            var option = document.createElement('option');
+            option.value = res;
 
-            let ListGare = all_Gare.filter(element => element.includes(inpuGareDepart.value))
-            for (let j = 0; j < 5; j++) {
-                let res = ListGare[j]
-                var option = document.createElement('option');
-                option.value = res;
-                parent.appendChild(option);  
-            }
-        })
+            var attr = document.createAttribute("property");
+            attr.value = "Station:NomGare";
+            option.setAttributeNode(attr);
+            
+            parent.appendChild(option);  
+        }
+    })
 
-        inpuGareArrive.addEventListener('keyup', (event) => {
-            let parent = document.getElementById("data2")
-            while (parent.firstChild) {
-                parent.removeChild(parent.firstChild);
-            }
+    inpuGareArrive.addEventListener('keyup', (event) => {
+        let parent = document.getElementById("data2")
+        while (parent.firstChild) {
+            parent.removeChild(parent.firstChild);
+        }
+        console.log("Saisie Utilisateur")
+        let ListGare = all_Gare.filter(element => element.includes(inpuGareDepart.value))
+        for (let j = 0; j < 5; j++) {
+            let res = ListGare[j]
+            var option = document.createElement('option');
+            option.value = res;
 
-            let ListGare = all_Gare.filter(element => element.includes(inpuGareDepart.value))
-            for (let j = 0; j < 5; j++) {
-                let res = ListGare[j]
-                var option = document.createElement('option');
-                option.value = res;
-                parent.appendChild(option);  
-            }
-        })
-    }
-    loading = false;
+            var attr = document.createAttribute("property");
+            attr.value = "Station:NomGare";
+            option.setAttributeNode(attr);
+
+            parent.appendChild(option);  
+        }
+    })
 }
 
 function renderDisplayJourney(){
     console.log(currentStation)
     if(currentStation == null){
-        let txt = `<label><i className="fa-solid fa-train"></i> Nom Train : <a id="NameT"
-                                                                              property="foaf:lastName"></a></label>
-        <label><i className="fa-solid fa-place-of-worship"></i> Gare Départ : <a id="GareDT"
+        let txt = `<label><i className="fa-solid fa-place-of-worship"></i> Gare Départ : <a id="GareDT"
                                                                                  property="foaf:lastName"></a></label>
         <label><i className="fa-solid fa-place-of-worship"></i> Gare Arrivé : <a id="GareAr"
                                                                                  property="foaf:lastName"></a></label>
@@ -88,10 +99,11 @@ function renderDisplayJourney(){
                                                                                property="foaf:lastName"></a></label>`
         document.querySelector('#section_show').innerHTML = txt;
     }else{
-        let txt = `<label><i class="fa-solid fa-train"></i> Nom Train : <a id="NameT" property="foaf:lastName"></a></label>
-                   <label><i class="fa-solid fa-place-of-worship"></i> Nom de station : ${currentStation['station_name ']} <a id="GareDT" property="foaf:lastName"></a></label>
-                   <label><i class="fa-solid fa-hourglass-start"></i> Heure Départ : ${currentStation["arrival "]} <a id="HeureDT" property="foaf:lastName"></a></label>
-                   <label><i class="fa-solid fa-hourglass-end"></i> Heure Arrivé : ${currentStation["departure "]}<a id="NameART" property="foaf:lastName"></a></label>`
+        let heureA = currentStation["arrival "].slice(0, 2) + ' : ' + currentStation["arrival "].slice(2, 4) + ' : ' + currentStation["arrival "].slice(4, 6)
+        let heureD = currentStation["departure "].slice(0, 2) + ' : ' + currentStation["departure "].slice(2, 4) + ' : ' + currentStation["departure "].slice(4, 6)
+        let txt = `<label><i class="fa-solid fa-place-of-worship"></i> Nom de station : ${currentStation['station_name ']} <a id="GareDT" property="foaf:lastName"></a></label>
+                   <label><i class="fa-solid fa-hourglass-start"></i> Heure Départ : ${heureA} <a id="HeureDT" property="foaf:lastName"></a></label>
+                   <label><i class="fa-solid fa-hourglass-end"></i> Heure Arrivé : ${heureD}<a id="NameART" property="foaf:lastName"></a></label>`
 
         document.querySelector('#section_show').innerHTML = txt;
     }
@@ -151,13 +163,24 @@ btn_send.addEventListener('click', async () =>{
         }
     }else if(btn_send.value == 'train'){
         const id_train = document.querySelector('#id_train').value
-        let train_journey_json = await findTrainJourney(id_train)
-        let jsonSend = {id:id_train, val : train_journey_json};
-        let rep = await sendJson(`/trajet/id`, jsonSend)
-        currentJourney = rep.values;
-        currentStation = currentJourney[0]
+        if (id_train == "")
+        {
+            document.getElementById("AlertError").classList.add("show");
+            document.getElementById("AlertError").classList.remove("hidden");
+        }
+        else
+        {
+            document.getElementById("AlertError").classList.remove("show");
+            document.getElementById("AlertError").classList.add("hidden");
+
+            let train_journey_json = await findTrainJourney(id_train)
+            let jsonSend = { id: id_train, val: train_journey_json };
+            let rep = await sendJson(`/trajet/id`, jsonSend)
+            currentJourney = rep.values;
+            currentStation = currentJourney[0]
+            document.getElementById("res_hidden").classList.remove("hidden");
+        }
     }
-    //document.getElementById("res_hidden").classList.remove("hidden");
     renderDisplayJourney();
 })
 

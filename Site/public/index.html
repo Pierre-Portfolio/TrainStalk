@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xml:lang="en" lang="en"
-    prefix="owl: http://www.w3.org/2002/07/owl#%5Cn rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#%5Cn xml: http://www.w3.org/XML/1998/namespace/n xsd: http://www.w3.org/2001/XMLSchema#%5Cn  rdfs: http://www.w3.org/2000/01/rdf-schema#">
+    prefix="owl: http://www.w3.org/2002/07/owl#%5Cn rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#%5Cn xml: http://www.w3.org/XML/1998/namespace/n xsd: http://www.w3.org/2001/XMLSchema#%5Cn  rdfs: http://www.w3.org/2000/01/rdf-schema# station: http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7liste-des-gares 
 
     <head>
         <meta charset="utf-8">
@@ -37,14 +37,14 @@
                 </div>
             </section>
             <section class="flex-auto w-1/2 h-full">
-                <div id="res_hidden" class="bg-white m-6 rounded-md">
+                <div id="res_hidden" class="bg-white m-6 rounded-md hidden">
                     <h1 class="text-center text-xl">Resultat</h1>
-                    <div id="infoResult" class="flex flex-col p-4">
-                        <section id="section_show">
+                    <section id="section_show" class="flex flex-col p-4">
 
-                        </section>
-                        <button id="next_train">--></button>
-                        <button id="previous_train"><--</button>
+                    </section>
+                    <div class="w-full flex flex-between justify-between p-4">
+                        <button id="previous_train"><i class="fa-solid fa-arrow-left"></i></button>
+                        <button id="next_train"><i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
                 <img class="fixed top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -z-50" 
