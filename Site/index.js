@@ -218,7 +218,7 @@ const ASK_getJourney = (idtrain) => {
 
 const getJourney = (idtrain) => {
     return `SELECT ?arrival ?depart ?stop_name ?lat ?long ?size WHERE {
-?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7train_id> "9580".
+?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7train_id> "${idtrain}".
 ?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7stop_times> ?y.
 ?y <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Arrive> ?arrival.
 ?y <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Depart> ?depart.
