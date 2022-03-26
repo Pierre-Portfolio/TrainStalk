@@ -1,7 +1,6 @@
 const express = require("express");
 const helmet = require('helmet');
 const cors = require('cors');
-const bodyParser = require('body-parser');
 const rdfstore = require('rdfstore');
 
 const app = express()
@@ -18,8 +17,11 @@ app.use(helmet());
 app.options('*', cors());
 
 /*recup trajet gare arrive et depart*/
-app.post('/meteo', (request, response) => {
+app.post('/meteo', async (request, response) => {
     console.log("Debut /meteo");
+    const module = await import('./src/GenerateRdf.js');
+    const rdfWeather = await module.GenerateRdfDynamicWithoutUrl("./src/Onthologies/Data/Weather/context.json", request.body);
+    console.log(rdfWeather)
 })
 
 /*recup trajet gare arrive et depart*/

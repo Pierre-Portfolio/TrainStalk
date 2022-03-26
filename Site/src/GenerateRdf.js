@@ -2,6 +2,14 @@ import * as jsonld from 'jsonld';
 import * as fs from 'fs';
 import * as rdfstore from 'rdfstore'
 
+export const GenerateRdfDynamicWithoutUrl = async (data_context, data_contains) => {
+    let jsoncontext = JSON.parse(fs.readFileSync(data_context, 'utf-8'))
+    jsoncontext["itemListElement"].push(data_contains)
+
+    const rdf = await jsonld.default.toRDF(jsoncontext, { format: 'application/n-quads' });
+    return rdf
+};
+
 export const GenerateRdfDynamic = async (data_context, data_contains) => {
     let jsoncontext = JSON.parse(fs.readFileSync(data_context, 'utf-8'))
     const jsoncontains = JSON.parse(fs.readFileSync(data_contains, 'utf-8'))
