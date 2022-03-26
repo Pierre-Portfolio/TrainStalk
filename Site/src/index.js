@@ -5,7 +5,7 @@ const rdfstore = require('rdfstore');
 const {
     GenerateRdfDynamic,
     GenerateRdfDynamicWithoutUrl
-} = require('./src/GenerateRdf.js');
+} = require('./GenerateRdf.js');
 
 const app = express()
 const PORT = 8092;
@@ -21,7 +21,7 @@ app.options('*', cors());
 /*recup trajet gare arrive et depart*/
 app.post('/meteo', async (request, response) => {
     console.log("Debut /meteo");
-    const rdfWeather = await GenerateRdfDynamicWithoutUrl("./src/Onthologies/Data/Weather/context.json", request.body);
+    const rdfWeather = await GenerateRdfDynamicWithoutUrl("./Onthologies/Data/Weather/context.json", request.body);
     console.log(rdfWeather)
 })
 
@@ -32,7 +32,7 @@ app.post('/trajet/gare/search', async (request, response) => {
     let gare_arr = request.body.garearr;
     let resp = {};
     try {
-        const rdfGare = await GenerateRdfDynamic("./src/Onthologies/Data/Gare/context.json", "./src/Onthologies/Data/Gare/data.json");
+        const rdfGare = await GenerateRdfDynamic("./Onthologies/Data/Gare/context.json", "./Onthologies/Data/Gare/data.json");
         let store = new rdfstore.Store((err, store) => {
             store.load('text/n3', rdfGare, (s, d) => {
                 store.execute(query_uicFromGare(gare_dep), (err, res) => {
@@ -111,7 +111,7 @@ app.post('/trajet/id', async (request, response) => {
     console.log("Debut /trajet/id");
     let id = request.body.id;
     try {
-        const rdfTrajet = await GenerateRdfDynamicWithoutUrl("./src/Onthologies/Data/Train/context.json", request.body.val);
+        const rdfTrajet = await GenerateRdfDynamicWithoutUrl("./Onthologies/Data/Train/context.json", request.body.val);
         let store = new rdfstore.Store(function (err, store) {
             store.load('text/n3', rdfTrajet, (s, d) => {
                 store.execute(ASK_getJourney(id), function (err, res) {
@@ -157,7 +157,7 @@ app.post('/trajet/id', async (request, response) => {
 /*== Get all station on start ==*/
 app.post('/gare', async (request, response) => {
     try {
-        const rdfGare = fs.readFileSync('./src/Onthologies/Data/Gare/gare-data.nq').toString();
+        const rdfGare = fs.readFileSync('./Onthologies/Data/Gare/gare-data.nq').toString();
         let store = new rdfstore.Store(function (err, store) {
             store.load('text/n3', rdfGare, (s, d) => {
                 store.execute(query_allGareName, function (err, res) {
@@ -190,16 +190,6 @@ app.listen(PORT);
 
 console.log(`📡 Running on port ${PORT}`);
 console.log(`Open it with http://localhost:${PORT}`)
-
-/* === Function === */
-
-function saveJson(textName, jsonData) {
-    fs.writeFile(textName, jsonData, function (err) {
-        if (err) {
-            console.log(err);
-        }
-    });
-}
 
 /* === Query === */
 const query_allGareName = "SELECT ?name WHERE{?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7NomGare> ?name}"
