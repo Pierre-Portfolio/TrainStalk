@@ -114,9 +114,7 @@ async function renderDisplayJourney(){
         document.querySelector('#section_show').innerHTML = txt;
 
         let weatherdata = await findweather(currentStation["lat"], currentStation["long"])
-        console.log("METEO")
-        console.log(weatherdata)
-        //sendJson(,weatherdata)
+        sendJson("/meteo",weatherdata)
     }
 }
 

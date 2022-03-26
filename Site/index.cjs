@@ -18,6 +18,11 @@ app.use(helmet());
 app.options('*', cors());
 
 /*recup trajet gare arrive et depart*/
+app.post('/meteo', (request, response) => {
+    console.log("Debut /meteo");
+})
+
+/*recup trajet gare arrive et depart*/
 app.post('/trajet/gare/search', (request, response) =>
 {
     console.log("Debut /trajet/gare/search");
