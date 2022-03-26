@@ -42,48 +42,51 @@ function renderForm(type) {
         btn_send.value = "trajet";
     }
     section_form.innerHTML = txt;
-    inpuGareDepart = document.querySelector('#dep_station');
-    inpuGareArrive = document.querySelector('#arr_station');
 
-    inpuGareDepart.addEventListener('keyup', (event) => {
-        let parent =  document.getElementById("data1")
-        while (parent.firstChild) {
-            parent.removeChild(parent.firstChild);
-        }
-        console.log("Saisie Utilisateur")
-        let ListGare = all_Gare.filter(element => element.includes(inpuGareDepart.value))
-        for (let j = 0; j < 5; j++) {
-            let res = ListGare[j]
-            var option = document.createElement('option');
-            option.value = res;
+    if (type == "trajet") {
+        inpuGareDepart = document.querySelector('#dep_station');
+        inpuGareArrive = document.querySelector('#arr_station');
 
-            var attr = document.createAttribute("property");
-            attr.value = "station:NomGare";
-            option.setAttributeNode(attr);
-            
-            parent.appendChild(option);  
-        }
-    })
+        inpuGareDepart.addEventListener('keyup', (event) => {
+            let parent =  document.getElementById("data1")
+            while (parent.firstChild) {
+                parent.removeChild(parent.firstChild);
+            }
+            console.log("Saisie Utilisateur")
+            let ListGare = all_Gare.filter(element => element.includes(inpuGareDepart.value))
+            for (let j = 0; j < 5; j++) {
+                let res = ListGare[j]
+                var option = document.createElement('option');
+                option.value = res;
 
-    inpuGareArrive.addEventListener('keyup', (event) => {
-        let parent = document.getElementById("data2")
-        while (parent.firstChild) {
-            parent.removeChild(parent.firstChild);
-        }
-        console.log("Saisie Utilisateur")
-        let ListGare = all_Gare.filter(element => element.includes(inpuGareDepart.value))
-        for (let j = 0; j < 5; j++) {
-            let res = ListGare[j]
-            var option = document.createElement('option');
-            option.value = res;
+                var attr = document.createAttribute("property");
+                attr.value = "station:NomGare";
+                option.setAttributeNode(attr);
+                
+                parent.appendChild(option);  
+            }        
+        })
 
-            var attr = document.createAttribute("property");
-            attr.value = "Station:NomGare";
-            option.setAttributeNode(attr);
+        inpuGareArrive.addEventListener('keyup', (event) => {
+            let parent = document.getElementById("data2")
+            while (parent.firstChild) {
+                parent.removeChild(parent.firstChild);
+            }
+            console.log("Saisie Utilisateur")
+            let ListGare = all_Gare.filter(element => element.includes(inpuGareDepart.value))
+            for (let j = 0; j < 5; j++) {
+                let res = ListGare[j]
+                var option = document.createElement('option');
+                option.value = res;
 
-            parent.appendChild(option);  
-        }
-    })
+                var attr = document.createAttribute("property");
+                attr.value = "Station:NomGare";
+                option.setAttributeNode(attr);
+
+                parent.appendChild(option);  
+            }
+        })
+    }
 }
 
 function renderDisplayJourney(){
