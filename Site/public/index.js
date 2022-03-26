@@ -91,14 +91,7 @@ function renderForm(type) {
 function renderDisplayJourney(){
     console.log(currentStation)
     if(currentStation == null){
-        let txt = `<label><i className="fa-solid fa-place-of-worship"></i> Gare Départ : <a id="GareDT"
-                                                                                 property="station:NomGare"></a></label>
-        <label><i className="fa-solid fa-place-of-worship"></i> Gare Arrivé : <a id="GareAr"
-                                                                                 property="station:NomGare"></a></label>
-        <label><i className="fa-solid fa-hourglass-start"></i> Heure Départ : <a id="HeureDT"
-                                                                                 property="foaf:lastName"></a></label>
-        <label><i className="fa-solid fa-hourglass-end"></i> Heure Arrivé : <a id="NameART"
-                                                                               property="foaf:lastName"></a></label>`
+        let txt = `Aucun Résultat Trouvé`
         document.querySelector('#section_show').innerHTML = txt;
     }else{
         let heureA = currentStation["arrival "].slice(0, 2) + ' : ' + currentStation["arrival "].slice(2, 4) + ' : ' + currentStation["arrival "].slice(4, 6)
