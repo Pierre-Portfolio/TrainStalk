@@ -90,9 +90,9 @@ function renderDisplayJourney(){
     console.log(currentStation)
     if(currentStation == null){
         let txt = `<label><i className="fa-solid fa-place-of-worship"></i> Gare Départ : <a id="GareDT"
-                                                                                 property="foaf:lastName"></a></label>
+                                                                                 property="station:NomGare"></a></label>
         <label><i className="fa-solid fa-place-of-worship"></i> Gare Arrivé : <a id="GareAr"
-                                                                                 property="foaf:lastName"></a></label>
+                                                                                 property="station:NomGare"></a></label>
         <label><i className="fa-solid fa-hourglass-start"></i> Heure Départ : <a id="HeureDT"
                                                                                  property="foaf:lastName"></a></label>
         <label><i className="fa-solid fa-hourglass-end"></i> Heure Arrivé : <a id="NameART"
@@ -101,9 +101,13 @@ function renderDisplayJourney(){
     }else{
         let heureA = currentStation["arrival "].slice(0, 2) + ' : ' + currentStation["arrival "].slice(2, 4) + ' : ' + currentStation["arrival "].slice(4, 6)
         let heureD = currentStation["departure "].slice(0, 2) + ' : ' + currentStation["departure "].slice(2, 4) + ' : ' + currentStation["departure "].slice(4, 6)
-        let txt = `<label><i class="fa-solid fa-place-of-worship"></i> Nom de station : ${currentStation['station_name ']} <a id="GareDT" property="foaf:lastName"></a></label>
-                   <label><i class="fa-solid fa-hourglass-start"></i> Heure Départ : ${heureA} <a id="HeureDT" property="foaf:lastName"></a></label>
-                   <label><i class="fa-solid fa-hourglass-end"></i> Heure Arrivé : ${heureD}<a id="NameART" property="foaf:lastName"></a></label>`
+        let txt = `<label><i class="fa-solid fa-place-of-worship"></i> Nom de station : <a id="GareDT" property="station:NomGare"> ${currentStation['station_name ']} </a></label>
+                   <label><i class="fa-solid fa-hourglass-start"></i> Heure Départ : <a id="HeureDT" property="hour:Hours"> ${heureA} </a></label>
+                   <label><i class="fa-solid fa-hourglass-end"></i> Heure Arrivé : <a id="NameART" property="hour:Hours"> ${heureD} </a></label>
+                   <label><i class="fa-solid fa-vector-square"></i> Size : <a id="TypeT" property="train:Size"> ${currentStation['size']} </a></label>
+                   <label><i class="fa-solid fa-temperature-half"></i> Temperature : <a id="Temperature" property="weather:Temperature"> - </a></label>
+                   <label><i class="fa-solid fa-wind"></i> Vent : <a id="Vent" property="weather:Wind"> - </a></label>
+                   <label><i class="fa-solid fa-cloud-rain"></i> Pluie : <a id="Pluie" property="weather:Rain"> - </a></label>`
 
         document.querySelector('#section_show').innerHTML = txt;
     }

@@ -100,8 +100,9 @@ app.post('/trajet/id', (request, response) =>
                                 if(res && res.length !== 0){
                                     console.log(res)
                                     let val_res = res.map(x => {
-                                        return {"station_name ": x.stop_name.value,"arrival ": x.arrival.value, "departure ": x.depart.value, "lat":x.lat.value, "long": x.long.value }
+                                        return { "station_name ": x.stop_name.value, "arrival ": x.arrival.value, "departure ": x.depart.value, "lat": x.lat.value, "long": x.long.value, "size": x.size.value}
                                     });
+                                    console.log("JE SUIS ICI")
                                     console.log(val_res)
                                     response.send({"values":val_res,"success":true})
                                 }else{
@@ -125,7 +126,6 @@ app.post('/trajet/id', (request, response) =>
 /*== Get all station on start ==*/
 app.post('/gare', (request, response) =>
 {
-    console.log("Debut /gare");
     (async () =>{
         try{
             const rdfGare = fs.readFileSync('./src/Onthologies/Data/Gare/gare-data.nq').toString();
@@ -146,6 +146,7 @@ app.post('/gare', (request, response) =>
             response.send({"success":false})
         }
     })();
+    console.log("Liste des gares : Done...");
 });
 
 app.get('/', (request, response) => {});
@@ -181,7 +182,7 @@ const ASK_getJourney = (idtrain) => {
 }
 
 const getJourney = (idtrain) => {
-    return `SELECT ?arrival ?depart ?stop_name ?lat ?long WHERE {
+    return `SELECT ?arrival ?depart ?stop_name ?lat ?long ?size WHERE {
 ?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7train_id> "9580".
 ?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7stop_times> ?y.
 ?y <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Arrive> ?arrival.
@@ -190,7 +191,8 @@ const getJourney = (idtrain) => {
 ?z <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Name> ?stop_name.
 ?z <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7coord> ?a.
 ?a <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7TrainLatitude> ?lat.
-?a <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7TrainLatitude> ?long
+?a <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7TrainLatitude> ?long .
+?b <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Size> ?size
 }`
 }
 
