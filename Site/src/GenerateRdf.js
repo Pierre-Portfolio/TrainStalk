@@ -2,7 +2,7 @@ const jsonld = require('jsonld');
 const fs = require('fs');
 // const rdfstore = require('rdfstore');
 
-exports.GenerateRdfDynamicWithoutUrl = async (data_context, data_contains) => {
+const GenerateRdfDynamicWithoutUrl = async (data_context, data_contains) => {
     let jsoncontext = JSON.parse(fs.readFileSync(data_context, 'utf-8'))
     jsoncontext["itemListElement"].push(data_contains)
 
@@ -12,7 +12,9 @@ exports.GenerateRdfDynamicWithoutUrl = async (data_context, data_contains) => {
     return rdf
 };
 
-exports.GenerateRdfDynamic = async (data_context, data_contains) => {
+exports.GenerateRdfDynamicWithoutUrl = GenerateRdfDynamicWithoutUrl;
+
+const GenerateRdfDynamic = async (data_context, data_contains) => {
     let jsoncontext = JSON.parse(fs.readFileSync(data_context, 'utf-8'))
     const jsoncontains = JSON.parse(fs.readFileSync(data_contains, 'utf-8'))
     jsoncontext["itemListElement"].push(jsoncontains)
@@ -23,12 +25,14 @@ exports.GenerateRdfDynamic = async (data_context, data_contains) => {
     return rdf
 };
 
+exports.GenerateRdfDynamic = GenerateRdfDynamic;
+
 // a faire pour les 2 lien dynamique donc recup leur json respectif
 
 
-//const rdfGare = await GenerateRdfDynamic('./Onthologies/Data/Gare/context.json','./Onthologies/Data/Gare/data.json')
+//const rdfGare = await GenerateRdfDynamic('./src/Onthologies/Data/Gare/context.json','./src/Onthologies/Data/Gare/data.json')
 //console.log(rdfGare)
-// const rdfTrajet = await GenerateRdfDynamic('./Onthologies/Data/Train/context.json','./Onthologies/Data/Train/trajet-data.json')
+// const rdfTrajet = await GenerateRdfDynamic('./src/Onthologies/Data/Train/context.json','./src/Onthologies/Data/Train/trajet-data.json')
 
 // var prefix = "PREFIX owl:http://www.w3.org/2002/07/owl#\n" +
 //     "PREFIX rdf:http://www.w3.org/1999/02/22-rdf-syntax-ns#\n" +
@@ -61,4 +65,4 @@ let q = `ASK {?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-on
 //     });
 // });
 
-//fs.writeFileSync('./Onthologies/Data/Gare/gare-data.nq', rdfGare)
+//fs.writeFileSync('./src/Onthologies/Data/Gare/gare-data.nq', rdfGare)
