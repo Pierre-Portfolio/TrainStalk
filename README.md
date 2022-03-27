@@ -1,10 +1,10 @@
 <h1 align="center">
-  <img src="./static/pictures/header.jpg" alt="Redicube" />
+  <img src="./Assets/header.jpg" alt="TrainStalk" />
 </h1>
 
 ---
 
-# RESOLUTION EXHAUSTIVE D’UN REDICUBE
+# 
 
 ## Petit résumé
 
@@ -15,16 +15,33 @@
 - Trouver le nombre de dieux du Redi Cube (nombre de mouvements maximum pour résoudre toutes les positions initiales possibles).
 - Réaliser un algorithme de résolution.
 
+## API Utilisé
+
+- https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/
+- https://api.sncf.com/v1/coverage/sncf/stop_points/
+- https://www.infoclimat.fr/public-api/
+
 ## Techno
 
-- Python
-- Spyder
+- JavaScript
+- NodeJs v16.14.1
+- Visual Studio Code
+
+## Lancer le projet
+
+- Installer la version NodeJs v16.14.1
+- Ouvrir le répertoire Site avec Visual Studio Code
+
+Launch in a terminal :
+- npm install
+- npm run start
 
 ## UI
-<img src="./static/pictures/visu.png" alt="Redicube" />
+<img src="./Assets/demo.png" alt="Train" />
 
 ## Auteur
 
-- [@Owen](https://github.com/owen974)
+- [@Flaye](https://github.com/owen974)
 - [@Pierre](https://github.com/Pierre-Portfolio)
-- [@OeTroV](https://github.com/OeTroV)
+- [@Dany](https://github.com/OeTroV)
+- [@Elie](https://github.com/OeTroV)
