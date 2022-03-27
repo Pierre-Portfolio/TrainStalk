@@ -1,7 +1,6 @@
 'use strict';
 
 const btn_trajet = document.querySelector('#trajet-btn');
-//const btn_gare = document.querySelector('#gare-btn');
 const btn_train = document.querySelector('#train-btn');
 const section_form = document.querySelector('#section_form');
 const btn_send = document.querySelector('#btn_send');
@@ -223,7 +222,6 @@ const findTrainJourney = async id => {
         console.log(trains)
         if(trains.hasOwnProperty("error")){
             response = await fetch(`https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/vehicle_journey:SNCF:${date}:${id}:1187:Train`, options_fetch);
-            //response = await fetch(`https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/vehicle_journey:SNCF:2022-03-26:${id}:1187:Train`, options_fetch);
             trains = await response.json();
             if(trains.hasOwnProperty("error")){
                 trains = {};
@@ -237,12 +235,8 @@ const findTrainJourney = async id => {
         delete trains[0]['journey_pattern'];
         delete trains[0]['headsign'];
         delete trains[0]['trip'];
-        /*
-        trains = trains['vehicle_journeys']
-        trains[0]['size'] = trains[0]['id'].split(':')[5]
-        delete trains[0]['journey_pattern']
-        delete trains[0]['headsign']
-        delete trains[0]['trip']*/
+
+
 
         return trains[0];
     }catch (err) {
