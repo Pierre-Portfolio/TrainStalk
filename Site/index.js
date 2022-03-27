@@ -19,6 +19,16 @@ app.options('*', cors());
 app.post('/meteo', async (request, response) => {
     console.log("Debut /meteo");
     const rdfWeather = await GenerateRdfDynamicWithoutUrl("./src/Onthologies/Data/Weather/context.json", request.body);
+    console.log(rdfWeather)
+    /*
+    let store = new rdfstore.Store((err, store) => {
+        store.load('text/n3', rdfWeather, (s, d) => {
+            store.execute(get_weather(), (err, res) => {
+
+            });
+        });
+    });
+    */
 })
 
 /*recup trajet gare arrive et depart*/
@@ -232,4 +242,11 @@ const get_coord = (gareName) => {
         `{ {?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7NomGare> "${gareName}"} UNION` +
         `{?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Ville> "${gareName}"}.` +
         `?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Coordinates> ?coord}`;
+}
+
+const get_weather = () => {
+    return `SELECT ?temp ?wind ?rain WHERE` +
+        `{ {?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7temperature> ?temp}.` +
+        `{?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7vent_moyen> ?wind}.` +
+        `?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Rain> ?rain}`;
 }

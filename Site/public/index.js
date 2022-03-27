@@ -285,7 +285,7 @@ const findweather = async (latitude, longitude) => {
         
         let i = 0
         for (const match of matches) {
-            myJson = myJson.replaceAll(match[0], i)
+            myJson = myJson.replaceAll(match[0], "col" + i)
             i = i + 1;
         }
         data = JSON.parse(myJson);
