@@ -43,7 +43,7 @@
 ```
 
 ## UI
-<img src="./Assets/demo.png" alt="Train" />
+<img src="./Assets/demo.gif" alt="Train" />
 
 ## Auteur
 
