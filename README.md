@@ -41,7 +41,7 @@ Launch in a terminal :
 
 ## Auteur
 
-- [@Flaye](https://github.com/owen974)
+- [@Flaye](https://github.com/Flaye)
 - [@Pierre](https://github.com/Pierre-Portfolio)
-- [@Dany](https://github.com/OeTroV)
-- [@Elie](https://github.com/OeTroV)
+- [@Dany](https://github.com/dany123000)
+- [@Elie](https://github.com/ElieObadiaDevinci)
