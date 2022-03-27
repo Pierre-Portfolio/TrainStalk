@@ -71,7 +71,7 @@ function renderForm(type) {
                 parent.removeChild(parent.firstChild);
             }
             console.log("Saisie Utilisateur")
-            let ListGare = all_Gare.filter(element => element.includes(inpuGareDepart.value))
+            let ListGare = all_Gare.filter(element => element.includes(inpuGareArrive.value))
             for (let j = 0; j < 5; j++) {
                 let res = ListGare[j]
                 var option = document.createElement('option');
