@@ -18,10 +18,10 @@
 
 ## API Utilisé
 
-- 
-- https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/
-- https://api.sncf.com/v1/coverage/sncf/stop_points/
-- https://www.infoclimat.fr/public-api/
+- https://ressources.data.sncf.com/explore/dataset/liste-des-gares/table/ (Static)
+- https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/ (Dynamique)
+- https://api.sncf.com/v1/coverage/sncf/stop_points/ (Dynamique)
+- https://www.infoclimat.fr/public-api/ (Dynamique)
 
 ## Techno
 
