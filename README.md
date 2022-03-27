@@ -8,7 +8,7 @@
 
 ## Petit résumé
 
-- N'avez vous jamais révé de pouvoir suivre en détail et en direct un train de votre choix ? C'est maintenant possible avec TrainStalk !
+- N'avez vous jamais rêvé de pouvoir suivre en détail et en direct un train de votre choix ? C'est maintenant possible avec TrainStalk !
 
 ## Objectifs
 
@@ -16,9 +16,9 @@
 - Création d'un site web utilisant les principes du RDF
 - Utilisation d'api provenenant de plusieurs sources différentes
 
-## API Utilisé
+## API Utilisées
 
-- https://ressources.data.sncf.com/explore/dataset/liste-des-gares/table/ (Static)
+- https://ressources.data.sncf.com/explore/dataset/liste-des-gares/table/ (Statique)
 - https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/ (Dynamique)
 - https://api.sncf.com/v1/coverage/sncf/stop_points/ (Dynamique)
 - https://www.infoclimat.fr/public-api/ (Dynamique)
@@ -35,7 +35,7 @@
 
 - Installer la version NodeJs v16.14.1
 - Ouvrir le répertoire Site avec Visual Studio Code
-- Launch in a terminal :
+- Saisissez dans un terminal :
 ```bash
   npm install
   npm run start
