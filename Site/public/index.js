@@ -216,7 +216,6 @@ const findTrainJourney = async id => {
     let date = today.getFullYear()+'-'+(month<10?'0'+month : month)+'-'+ (day < 10 ? '0'+day : day);
     try {
         let url = `https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/vehicle_journey:SNCF:${date}:${id}:1187:LongDistanceTrain`
-        //let url = `https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/vehicle_journey:SNCF:2022-03-26:${id}:1187:LongDistanceTrain`
         var response = await fetch(url, options_fetch)
         var trains = await response.json();
         console.log(trains)
@@ -247,7 +246,6 @@ const findTrainJourney = async id => {
 
 const findTrainStation = async (departure, arrival) => {
     try {
-        //var response = await fetch(`https://api.sncf.com/v1/coverage/sncf/stop_points/stop_point:SNCF:${departure}:Train/departures`, options_fetch);
         let response = await fetch(`https://api.sncf.com/v1/coverage/sncf/stop_points/stop_point:SNCF:87317362:Train/departures`, options_fetch);
         let trains = await response.json();
         if(!trains.hasOwnProperty("error")) {
@@ -281,6 +279,15 @@ const findweather = async (latitude, longitude) => {
         myJson = myJson.replaceAll('en":{"10m', 'en":{"vent_moyen_10m')
         myJson = myJson.replaceAll('es":{"10m', 'es":{"vent_rafales_10m')
         myJson = myJson.replaceAll('on":{"10m', 'on":{"vent_direction_10m')
+
+        const regexp = RegExp('2022.+?(?=")', 'g');
+        let matches = myJson.matchAll(regexp);
+        
+        let i = 0
+        for (const match of matches) {
+            myJson = myJson.replaceAll(match[0], i)
+            i = i + 1;
+        }
         data = JSON.parse(myJson);
         return data
     }catch (err) {

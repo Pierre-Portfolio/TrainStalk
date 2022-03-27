@@ -19,7 +19,6 @@ app.options('*', cors());
 app.post('/meteo', async (request, response) => {
     console.log("Debut /meteo");
     const rdfWeather = await GenerateRdfDynamicWithoutUrl("./src/Onthologies/Data/Weather/context.json", request.body);
-    console.log(rdfWeather)
 })
 
 /*recup trajet gare arrive et depart*/
