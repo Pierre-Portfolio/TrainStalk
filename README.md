@@ -28,7 +28,7 @@
 - NodeJs v16.14.1
 - JavaScript
 - Tailwind
-- Fontawesome
+- FontAwesome
 - Visual Studio Code
 
 ## Lancer le projet
