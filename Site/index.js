@@ -23,6 +23,8 @@ app.post('/meteo', async (request, response) => {
         store.load('text/n3', rdfWeather, (s, d) => {
             store.execute(get_weather(), (err, res) => {
                 if (res.length !== 0) {
+                    let resp = {"rain":res[0].rain.value, "wind":res[0].wind.value, "tempValue":res[0].tempValue.value};
+                    response.send({"weather":resp})
                     console.log(res[0].rain.value)
                     console.log(res[0].wind.value)
                     console.log(res[0].tempValue.value)
