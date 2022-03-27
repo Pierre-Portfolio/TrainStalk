@@ -6,6 +6,7 @@ const section_form = document.querySelector('#section_form');
 const btn_send = document.querySelector('#btn_send');
 const next_train = document.querySelector('#next_train');
 const previous_train = document.querySelector('#previous_train');
+const fahrenheitToCelsius = fahrenheit => fahrenheit - 273.15;
 
 let inpuGareDepart = null;
 let inpuGareArrive = null;
@@ -104,14 +105,14 @@ async function renderDisplayJourney(){
         else {
             sizeT = currentStation['size']
         }
-        console.log(currentMeteo)
+        
         let txt = `<label><i class="fa-solid fa-place-of-worship"></i> Nom de station : <a id="GareDT" property="station:NomGare"> ${currentStation['station_name ']} </a></label>
                    <label><i class="fa-solid fa-hourglass-start"></i> Heure Départ : <a id="HeureDT" property="hour:Hours"> ${heureA} </a></label>
                    <label><i class="fa-solid fa-hourglass-end"></i> Heure Arrivé : <a id="NameART" property="hour:Hours"> ${heureD} </a></label>
                    <label><i class="fa-solid fa-vector-square"></i> Size : <a id="TypeT" property="train:Size"> ${sizeT} </a></label>
-                   <label><i class="fa-solid fa-temperature-half"></i> Temperature : <a id="Temperature" property="weather:Temperature"> ${currentMeteo.tempValue} </a> Kelvin</label>
-                   <label><i class="fa-solid fa-wind"></i> Vent : <a id="Vent" property="weather:Wind"> ${currentMeteo.wind} </a> km/h</label>
-                   <label><i class="fa-solid fa-cloud-rain"></i> Pluie : <a id="Pluie" property="weather:Rain"> ${currentMeteo.rain} </a> mm</label>`
+                   <label><i class="fa-solid fa-temperature-half"></i> Temperature : <a id="Temperature" property="weather:Temperature"> ${fahrenheitToCelsius(currentMeteo.tempValue).toFixed(2)} </a>°C</label>
+                   <label><i class="fa-solid fa-wind"></i> Vent : <a id="Vent" property="weather:Wind"> ${currentMeteo.wind} </a>km/h</label>
+                   <label><i class="fa-solid fa-cloud-rain"></i> Pluie : <a id="Pluie" property="weather:Rain"> ${currentMeteo.rain} </a>mm</label>`
 
         document.querySelector('#section_show').innerHTML = txt;
     }

@@ -25,9 +25,6 @@ app.post('/meteo', async (request, response) => {
                 if (res.length !== 0) {
                     let resp = {"rain":res[0].rain.value, "wind":res[0].wind.value, "tempValue":res[0].tempValue.value};
                     response.send({"weather":resp})
-                    console.log(res[0].rain.value)
-                    console.log(res[0].wind.value)
-                    console.log(res[0].tempValue.value)
                 }
             });
         });
