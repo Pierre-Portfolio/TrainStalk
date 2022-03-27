@@ -4,19 +4,21 @@
 
 ---
 
-# 
+# TrainStalk
 
 ## Petit résumé
 
-- Conçu par Oskar Van Deventer en 2009 et publié par MoYu début juin 2017, le Redi Cube est une variante du Rubik's Cube à trois couches sur lequel chaque virage déplace les trois bords l'entourant.
+- N'avez vous jamais révé de pouvoir suivre en détail et en direct un train de votre choix ? C'est maintenant possible avec TrainStalk !
 
 ## Objectifs
 
-- Trouver le nombre de dieux du Redi Cube (nombre de mouvements maximum pour résoudre toutes les positions initiales possibles).
-- Réaliser un algorithme de résolution.
+- Création d'une Onthologie
+- Création d'un site web utilisant les principes du RDF
+- Utilisation d'api provenenant de plusieurs sources différentes
 
 ## API Utilisé
 
+- 
 - https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/
 - https://api.sncf.com/v1/coverage/sncf/stop_points/
 - https://www.infoclimat.fr/public-api/
@@ -31,10 +33,11 @@
 
 - Installer la version NodeJs v16.14.1
 - Ouvrir le répertoire Site avec Visual Studio Code
-
-Launch in a terminal :
-- npm install
-- npm run start
+- Launch in a terminal :
+```bash
+  npm install
+  npm run start
+```
 
 ## UI
 <img src="./Assets/demo.png" alt="Train" />
