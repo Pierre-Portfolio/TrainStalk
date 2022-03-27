@@ -35,7 +35,7 @@
 
 - Installer la version NodeJs v16.14.1
 - Ouvrir le répertoire Site avec Visual Studio Code
-- Saisissez dans un terminal :
+- Saisir dans un terminal :
 ```bash
   npm install
   npm run start
