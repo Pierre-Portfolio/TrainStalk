@@ -2,10 +2,7 @@ const express = require("express");
 const helmet = require('helmet');
 const cors = require('cors');
 const rdfstore = require('rdfstore');
-const {
-    GenerateRdfDynamic,
-    GenerateRdfDynamicWithoutUrl
-} = require('./src/GenerateRdf.js');
+const {GenerateRdfDynamic, GenerateRdfDynamicWithoutUrl} = require('./src/GenerateRdf.js');
 
 const app = express()
 const PORT = 8092;
