@@ -159,7 +159,11 @@ btn_send.addEventListener('click', async () =>{
             if(Object.keys(train_journey_send).length !== 0){
                 let rep = await sendJson(`/trajet/id`, train_journey_send);
                 currentJourney = rep.values;
-                currentStation = currentJourney[0]
+                try {
+                    currentStation = currentJourney[0]
+                } catch (error) {
+                    currentJourney = null;
+                }
             }else{
                 console.log("Not found");
                 currentJourney = null;
@@ -185,7 +189,11 @@ btn_send.addEventListener('click', async () =>{
             let jsonSend = { id: id_train, val: train_journey_json };
             let rep = await sendJson(`/trajet/id`, jsonSend)
             currentJourney = rep.values;
-            currentStation = currentJourney[0]
+            try {
+                currentStation = currentJourney[0]
+            } catch (error) {
+                currentJourney = null;
+            }
             document.getElementById("res_hidden").classList.remove("hidden");
         }
     }
