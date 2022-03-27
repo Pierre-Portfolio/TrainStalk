@@ -25,8 +25,9 @@
 
 ## Techno
 
-- NodeJs v16.14.1
+- Json
 - JavaScript
+- NodeJs v16.14.1
 - Tailwind
 - FontAwesome
 - Visual Studio Code
