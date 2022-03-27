@@ -14,6 +14,8 @@ let all_Gare = [];
 let currentJourney = null;
 let currentJourneyPosition = 0;
 let currentStation = null;
+let currentMeteo = null;
+
 function renderForm(type) {
     let txterror = `<div id="AlertError" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative hidden" role="alert">
             <strong class="font-bold" > Une Erreur est survenue ! </strong >
@@ -102,18 +104,16 @@ async function renderDisplayJourney(){
         else {
             sizeT = currentStation['size']
         }
+        console.log(currentMeteo)
         let txt = `<label><i class="fa-solid fa-place-of-worship"></i> Nom de station : <a id="GareDT" property="station:NomGare"> ${currentStation['station_name ']} </a></label>
                    <label><i class="fa-solid fa-hourglass-start"></i> Heure Départ : <a id="HeureDT" property="hour:Hours"> ${heureA} </a></label>
                    <label><i class="fa-solid fa-hourglass-end"></i> Heure Arrivé : <a id="NameART" property="hour:Hours"> ${heureD} </a></label>
                    <label><i class="fa-solid fa-vector-square"></i> Size : <a id="TypeT" property="train:Size"> ${sizeT} </a></label>
-                   <label><i class="fa-solid fa-temperature-half"></i> Temperature : <a id="Temperature" property="weather:Temperature"> - </a> Kelvin</label>
-                   <label><i class="fa-solid fa-wind"></i> Vent : <a id="Vent" property="weather:Wind"> - </a> km/h</label>
-                   <label><i class="fa-solid fa-cloud-rain"></i> Pluie : <a id="Pluie" property="weather:Rain"> - </a> mm</label>`
+                   <label><i class="fa-solid fa-temperature-half"></i> Temperature : <a id="Temperature" property="weather:Temperature"> ${currentMeteo.tempValue} </a> Kelvin</label>
+                   <label><i class="fa-solid fa-wind"></i> Vent : <a id="Vent" property="weather:Wind"> ${currentMeteo.wind} </a> km/h</label>
+                   <label><i class="fa-solid fa-cloud-rain"></i> Pluie : <a id="Pluie" property="weather:Rain"> ${currentMeteo.rain} </a> mm</label>`
 
         document.querySelector('#section_show').innerHTML = txt;
-
-        let weatherdata = await findweather(currentStation["lat"], currentStation["long"])
-        sendJson("/meteo",weatherdata)
     }
 }
 
@@ -121,23 +121,25 @@ btn_trajet.addEventListener('click', ()=>{
     renderForm("trajet")
 })
 
-next_train.addEventListener('click', ()=>{
+next_train.addEventListener('click', async ()=>{
     if (currentJourneyPosition >= currentJourney.length-1){
         currentJourneyPosition = 0;
     }else{
         currentJourneyPosition +=1
     }
     currentStation = currentJourney[currentJourneyPosition];
+    await getMeto();
     renderDisplayJourney();
 })
 
-previous_train.addEventListener('click', ()=>{
+previous_train.addEventListener('click', async ()=>{
     if (currentJourneyPosition <= 0){
         currentJourneyPosition = currentJourney.length-1;
     }else{
         currentJourneyPosition -=1
     }
     currentStation = currentJourney[currentJourneyPosition];
+    await getMeto();
     renderDisplayJourney();
 })
 
@@ -197,6 +199,7 @@ btn_send.addEventListener('click', async () =>{
             document.getElementById("res_hidden").classList.remove("hidden");
         }
     }
+    await getMeto()
     renderDisplayJourney();
 })
 
@@ -326,4 +329,10 @@ const getGare = async() =>{
     });
     const content =  await rep.json();
     return content
+}
+
+const getMeto = async () =>{
+    let weatherdata = await findweather(currentStation["lat"], currentStation["long"])
+    currentMeteo = await sendJson("/meteo",weatherdata);
+    currentMeteo = currentMeteo.weather
 }
