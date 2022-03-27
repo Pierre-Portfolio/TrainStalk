@@ -19,10 +19,10 @@ app.options('*', cors());
 app.post('/meteo', async (request, response) => {
     console.log("Debut /meteo");
     const rdfWeather = await GenerateRdfDynamicWithoutUrl("./src/Onthologies/Data/Weather/context.json", request.body);
-    console.log(rdfWeather)
     let store = new rdfstore.Store((err, store) => {
         store.load('text/n3', rdfWeather, (s, d) => {
             store.execute(get_weather(), (err, res) => {
+                console.log("Vide ?")
                 if (res.length !== 0) {
                     console.log(res)
                 }
@@ -245,7 +245,12 @@ const get_coord = (gareName) => {
 }
 
 const get_weather = () => {
-    return `SELECT ?Hours WHERE {
-        ?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7col6> ?Hours
-    }`;
-}
+    return `SELECT ?temp ?wind ?rain WHERE {
+        ?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7col6> ?col.
+        ?col <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7temperature> ?y .
+        ?col <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7vent_moyen> ?z .
+        ?col <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Rain> ?rain .
+        ?y <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7temperature> ?temp .
+        ?z <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7vent_moyen> ?rain
+    }`
+};
