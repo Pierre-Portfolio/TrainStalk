@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="./Assets/header.jpg" alt="TrainStalk" />
+  <img src="./Assets/header.png" alt="TrainStalk" />
 </h1>
 
 ---
