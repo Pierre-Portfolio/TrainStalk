@@ -25,8 +25,10 @@
 
 ## Techno
 
-- JavaScript
 - NodeJs v16.14.1
+- JavaScript
+- Tailwind
+- Fontawesome
 - Visual Studio Code
 
 ## Lancer le projet
