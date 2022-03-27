@@ -106,9 +106,9 @@ async function renderDisplayJourney(){
                    <label><i class="fa-solid fa-hourglass-start"></i> Heure Départ : <a id="HeureDT" property="hour:Hours"> ${heureA} </a></label>
                    <label><i class="fa-solid fa-hourglass-end"></i> Heure Arrivé : <a id="NameART" property="hour:Hours"> ${heureD} </a></label>
                    <label><i class="fa-solid fa-vector-square"></i> Size : <a id="TypeT" property="train:Size"> ${sizeT} </a></label>
-                   <label><i class="fa-solid fa-temperature-half"></i> Temperature : <a id="Temperature" property="weather:Temperature"> - </a></label>
-                   <label><i class="fa-solid fa-wind"></i> Vent : <a id="Vent" property="weather:Wind"> - </a></label>
-                   <label><i class="fa-solid fa-cloud-rain"></i> Pluie : <a id="Pluie" property="weather:Rain"> - </a></label>`
+                   <label><i class="fa-solid fa-temperature-half"></i> Temperature : <a id="Temperature" property="weather:Temperature"> - </a> Kelvin</label>
+                   <label><i class="fa-solid fa-wind"></i> Vent : <a id="Vent" property="weather:Wind"> - </a> km/h</label>
+                   <label><i class="fa-solid fa-cloud-rain"></i> Pluie : <a id="Pluie" property="weather:Rain"> - </a> mm</label>`
 
         document.querySelector('#section_show').innerHTML = txt;
 
