@@ -13,7 +13,7 @@ app.use(express.static('public'));
 app.use(cors());
 app.use(helmet());
 
-app.options('*', cors());
+app.options('/{*splat}', cors());
 
 /*recup trajet gare arrive et depart*/
 app.post('/meteo', async (request, response) => {
