@@ -8,7 +8,7 @@ const app = express()
 const PORT = 8092;
 const fs = require('fs')
 
-app.use(require('body-parser').json());
+app.use(express.json());
 app.use(express.static('public'));
 app.use(cors());
 app.use(helmet());
