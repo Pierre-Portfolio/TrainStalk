@@ -1,7 +1,7 @@
 const express = require("express");
 const helmet = require('helmet');
 const cors = require('cors');
-const rdfstore = require('rdfstore');
+const oxigraph = require('oxigraph');
 const {GenerateRdfDynamic, GenerateRdfDynamicWithoutUrl} = require('./src/GenerateRdf.js');
 
 const app = express()
@@ -15,20 +15,29 @@ app.use(helmet());
 
 app.options('/{*splat}', cors());
 
+const loadStore = (rdfNQuads) => {
+    const store = new oxigraph.Store();
+    store.load(rdfNQuads, {format: 'application/n-quads'});
+    return store;
+}
+
 /*recup trajet gare arrive et depart*/
 app.post('/meteo', async (request, response) => {
     console.log("Debut /meteo");
-    const rdfWeather = await GenerateRdfDynamicWithoutUrl("./src/Onthologies/Data/Weather/context.json", request.body);
-    let store = new rdfstore.Store((err, store) => {
-        store.load('text/n3', rdfWeather, (s, d) => {
-            store.execute(get_weather(), (err, res) => {
-                if (res.length !== 0) {
-                    let resp = {"rain":res[0].rain.value, "wind":res[0].wind.value, "tempValue":res[0].tempValue.value};
-                    response.send({"weather":resp})
-                }
-            });
-        });
-    });
+    try {
+        const rdfWeather = await GenerateRdfDynamicWithoutUrl("./src/Onthologies/Data/Weather/context.json", request.body);
+        const store = loadStore(rdfWeather);
+        const res = store.query(get_weather());
+        if (res.length !== 0) {
+            let resp = {"rain": res[0].get('rain').value, "wind": res[0].get('wind').value, "tempValue": res[0].get('tempValue').value};
+            response.send({"weather": resp})
+        } else {
+            response.send({"success": false})
+        }
+    } catch (e) {
+        console.log(e);
+        response.send({"success": false})
+    }
 })
 
 /*recup trajet gare arrive et depart*/
@@ -36,74 +45,28 @@ app.post('/trajet/gare/search', async (request, response) => {
     console.log("Debut /trajet/gare/search");
     let gare_dep = request.body.garedep;
     let gare_arr = request.body.garearr;
-    let resp = {};
     try {
         const rdfGare = await GenerateRdfDynamic("./src/Onthologies/Data/Gare/context.json", "./src/Onthologies/Data/Gare/data.json");
-        let store = new rdfstore.Store((err, store) => {
-            store.load('text/n3', rdfGare, (s, d) => {
-                store.execute(query_uicFromGare(gare_dep), (err, res) => {
-                    if (res.length !== 0) {
-                        resp['garedep'] = res[0].UIC.value;
-                        store.execute(query_uicFromGare(gare_arr), (err, res) => {
-                            if (res.length !== 0) {
-                                resp['garearr'] = res[0].UIC.value;
-                                response.send({
-                                    "uic": resp,
-                                    "success": true
-                                })
-                            } else {
-                                store.execute(query_uicFromGare(gare_arr.toUpperCase()), (err, res) => {
-                                    if (res.length !== 0) {
-                                        resp['garearr'] = res[0].UIC.value;
-                                        response.send({
-                                            "uic": resp,
-                                            "success": true
-                                        })
-                                    } else {
-                                        response.send({
-                                            "success": false
-                                        })
-                                    }
-                                });
-                            }
-                        });
-                    } else {
-                        store.execute(query_uicFromGare(gare_dep.toUpperCase()), (err, res) => {
-                            if (res.length !== 0) {
-                                resp['garedep'] = res[0].UIC.value;
-                                store.execute(query_uicFromGare(gare_arr), (err, res) => {
-                                    if (res.length !== 0) {
-                                        resp['garearr'] = res[0].UIC.value;
-                                        response.send({
-                                            "uic": resp,
-                                            "success": true
-                                        })
-                                    } else {
-                                        store.execute(query_uicFromGare(gare_arr.toUpperCase()), (err, res) => {
-                                            if (res.length !== 0) {
-                                                resp['garearr'] = res[0].UIC.value;
-                                                response.send({
-                                                    "uic": resp,
-                                                    "success": true
-                                                })
-                                            } else {
-                                                response.send({
-                                                    "success": false
-                                                })
-                                            }
-                                        });
-                                    }
-                                });
-                            } else {
-                                response.send({
-                                    "success": false
-                                })
-                            }
-                        });
-                    }
-                });
-            });
-        });
+        const store = loadStore(rdfGare);
+        const findUic = (gareName) => {
+            let res = store.query(query_uicFromGare(gareName));
+            if (res.length === 0) {
+                res = store.query(query_uicFromGare(gareName.toUpperCase()));
+            }
+            return res.length !== 0 ? res[0].get('UIC').value : null;
+        };
+        const uic_dep = findUic(gare_dep);
+        const uic_arr = findUic(gare_arr);
+        if (uic_dep !== null && uic_arr !== null) {
+            response.send({
+                "uic": {"garedep": uic_dep, "garearr": uic_arr},
+                "success": true
+            })
+        } else {
+            response.send({
+                "success": false
+            })
+        }
     } catch (e) {
         console.log(e);
         response.send({
@@ -118,40 +81,34 @@ app.post('/trajet/id', async (request, response) => {
     let id = request.body.id;
     try {
         const rdfTrajet = await GenerateRdfDynamicWithoutUrl("./src/Onthologies/Data/Train/context.json", request.body.val);
-        let store = new rdfstore.Store(function (err, store) {
-            store.load('text/n3', rdfTrajet, (s, d) => {
-                store.execute(ASK_getJourney(id), function (err, res) {
-                    if (res === true) {
-                        store.execute(getJourney(id), function (err, res) {
-                            if (res && res.length !== 0) {
-                                let val_res = res.map(x => {
-                                    return {
-                                        "station_name ": x.stop_name.value,
-                                        "arrival ": x.arrival.value,
-                                        "departure ": x.depart.value,
-                                        "lat": x.lat.value,
-                                        "long": x.long.value,
-                                        "size": x.size.value
-                                    }
-                                });
-                                response.send({
-                                    "values": val_res,
-                                    "success": true
-                                })
-                            } else {
-                                response.send({
-                                    "success": false
-                                })
-                            }
-                        });
-                    } else {
-                        response.send({
-                            "success": false
-                        })
+        const store = loadStore(rdfTrajet);
+        if (store.query(ASK_getJourney(id)) === true) {
+            const res = store.query(getJourney(id));
+            if (res.length !== 0) {
+                let val_res = res.map(x => {
+                    return {
+                        "station_name ": x.get('stop_name').value,
+                        "arrival ": x.get('arrival').value,
+                        "departure ": x.get('depart').value,
+                        "lat": x.get('lat').value,
+                        "long": x.get('long').value,
+                        "size": x.get('size').value
                     }
                 });
-            });
-        });
+                response.send({
+                    "values": val_res,
+                    "success": true
+                })
+            } else {
+                response.send({
+                    "success": false
+                })
+            }
+        } else {
+            response.send({
+                "success": false
+            })
+        }
     } catch (e) {
         console.log(e);
         response.send({
@@ -164,23 +121,19 @@ app.post('/trajet/id', async (request, response) => {
 app.post('/gare', async (request, response) => {
     try {
         const rdfGare = fs.readFileSync('./src/Onthologies/Data/Gare/gare-data.nq').toString();
-        let store = new rdfstore.Store(function (err, store) {
-            store.load('text/n3', rdfGare, (s, d) => {
-                store.execute(query_allGareName, function (err, res) {
-                    let val_ret = res.map(x => x.name.value);
-                    if (val_ret.length !== 0) {
-                        response.send({
-                            "All_Gare": val_ret,
-                            "success": true
-                        })
-                    } else {
-                        response.send({
-                            "success": false
-                        })
-                    }
-                });
-            });
-        });
+        const store = loadStore(rdfGare);
+        const res = store.query(query_allGareName);
+        const val_ret = res.map(x => x.get('name').value);
+        if (val_ret.length !== 0) {
+            response.send({
+                "All_Gare": val_ret,
+                "success": true
+            })
+        } else {
+            response.send({
+                "success": false
+            })
+        }
     } catch (e) {
         console.log(e);
         response.send({
@@ -207,10 +160,16 @@ function saveJson(textName, jsonData) {
     });
 }
 
+/* Escape user input before embedding it in a SPARQL string literal */
+const sparqlEscape = (value) => {
+    return String(value).replace(/[\\"\n\r]/g, (c) => ({'\\': '\\\\', '"': '\\"', '\n': '\\n', '\r': '\\r'}[c]));
+}
+
 /* === Query === */
 const query_allGareName = "SELECT ?name WHERE{?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7NomGare> ?name}"
 
 const query_uicFromGare = (gareName) => {
+    gareName = sparqlEscape(gareName);
     return `SELECT ?UIC WHERE` +
         `{ {?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7NomGare> "${gareName}"} UNION` +
         `{?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Ville> "${gareName}" }.` +
@@ -219,12 +178,12 @@ const query_uicFromGare = (gareName) => {
 
 /* == Check if idtrain == value in RDF ==*/ //TrainName a changer
 const ASK_getJourney = (idtrain) => {
-    return `ASK {?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7train_id> "${idtrain}"}`
+    return `ASK {?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7train_id> "${sparqlEscape(idtrain)}"}`
 }
 
 const getJourney = (idtrain) => {
     return `SELECT ?arrival ?depart ?stop_name ?lat ?long ?size WHERE {
-?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7train_id> "${idtrain}".
+?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7train_id> "${sparqlEscape(idtrain)}".
 ?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7stop_times> ?y.
 ?y <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Arrive> ?arrival.
 ?y <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Depart> ?depart.
@@ -238,6 +197,7 @@ const getJourney = (idtrain) => {
 }
 
 const get_coord = (gareName) => {
+    gareName = sparqlEscape(gareName);
     return `SELECT ?cood WHERE` +
         `{ {?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7NomGare> "${gareName}"} UNION` +
         `{?x <http://www.semanticweb.org/tompa/ontologies/2022/2/untitled-ontology-7Ville> "${gareName}"}.` +

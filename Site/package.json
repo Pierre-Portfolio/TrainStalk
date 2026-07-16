@@ -15,7 +15,7 @@
     "express": "^5.2.1",
     "helmet": "^8.3.0",
     "jsonld": "^9.0.0",
-    "rdfstore": "^0.9.17"
+    "oxigraph": "^0.5.9"
   },
   "type": "commonjs",
   "devDependencies": {
